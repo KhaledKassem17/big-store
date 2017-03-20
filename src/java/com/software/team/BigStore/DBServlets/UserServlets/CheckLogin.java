@@ -1,5 +1,6 @@
 package com.software.team.BigStore.DBServlets.UserServlets;
 
+import com.software.team.BigStore.Controllers.UserController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -42,6 +43,8 @@ public class CheckLogin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
+        UserController controller = new UserController();
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -49,31 +52,23 @@ public class CheckLogin extends HttpServlet {
 
         boolean submitted = false;
 
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session hibsession = sessionFactory.getCurrentSession();
-        hibsession.beginTransaction();
+        ref.userid = controller.getUserId(email, password);
 
-        //search for that user
-        SQLQuery query = hibsession.createSQLQuery("SELECT user_id FROM `user` WHERE `user_email` = '"+email+"' AND `user_password` = '"+password+"'");
-        List<Integer> listuserid = query.list();
-
-        if (listuserid.size() <= 0){
+        if (ref.userid <= 0){
             response.sendRedirect("/SoftwareProject/pages/dynamic/userlogging/login.jsp");
         }
 
-        ref.userid = listuserid.get(0);
-
-        User user = (User) hibsession.get(User.class ,ref.userid);
-
-        ref.username = user.getUser_name();
-        ref.usertype = user.getUserType();
+        ref.usertype = controller.checkUserType(ref.userid);
 
         if(ref.usertype == 1){
             //user is a company
 
-            Company company = (Company) hibsession.get(Company.class ,ref.userid);
+            Company company = controller.getCompany(ref.userid);
 
-            hibsession.getTransaction().commit();
+            ref.username = company.getUser_name();
+            ref.usertype = company.getUserType();
+
+            controller.commitChanges();
 
             //transfer company user data through session
             session.setAttribute("company", company);
@@ -83,9 +78,12 @@ public class CheckLogin extends HttpServlet {
 
         }else {
             //user is normal
-            NormalUser normal = (NormalUser) hibsession.get(NormalUser.class ,ref.userid);
+            NormalUser normal = controller.getNormal(ref.userid);
 
-            hibsession.getTransaction().commit();
+            ref.username = normal.getUser_name();
+            ref.usertype = normal.getUserType();
+
+            controller.commitChanges();
 
             //transfer normal user data through session
             session.setAttribute("normal", normal);

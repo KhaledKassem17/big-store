@@ -36,8 +36,4 @@ public class Connection {
         return session;
     }
 
-    public static void main(String[] args) {
-        new Connection();
-    }
-
 }

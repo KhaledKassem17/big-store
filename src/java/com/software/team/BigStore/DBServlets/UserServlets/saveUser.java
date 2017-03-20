@@ -1,5 +1,6 @@
 package com.software.team.BigStore.DBServlets.UserServlets;
 
+import com.software.team.BigStore.Controllers.UserController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -38,9 +39,9 @@ public class saveUser extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        User user;
         NormalUser normal;
         Company company;
+        UserController controller = new UserController();
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -63,10 +64,6 @@ public class saveUser extends HttpServlet {
             type = 0;
         }
 
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session hibsession = sessionFactory.getCurrentSession();
-        hibsession.beginTransaction();
-
         if (type == 0) {
             System.out.println("type ==> " + type);
 
@@ -80,29 +77,17 @@ public class saveUser extends HttpServlet {
 
             normal = new NormalUser(gender, date, username, password, "0", "0", phone, email, type, new byte[]{});
 
-            try {
-                //save normal User
-                hibsession.save(normal);
+            //save normal User
+            ref.userid = controller.saveNormal(normal);
 
-                System.out.println(normal.toString());
+            System.out.println(normal.toString());
 
-            } catch (HibernateException e) {
-                e.printStackTrace();
-                hibsession.getTransaction().rollback();
-            }
+            System.out.println("user_id ==> " + ref.userid);
 
-            User u = (User) hibsession.createQuery("FROM NormalUser").setMaxResults(1).uniqueResult();
-
-            int uid = u.getUser_id();
-
-            System.out.println("user_id ==> " + uid);
-
-            ref.userid = uid;
             ref.username = username;
             ref.usertype = type;
 
-            //commit all changes
-            hibsession.getTransaction().commit();
+            controller.commitChanges();
 
             normal.setUser_id(ref.userid);
 
@@ -119,30 +104,17 @@ public class saveUser extends HttpServlet {
 
             company = new Company(website, address, username, password, "0", "0", phone, email, type, new byte[]{});
 
-            try {
+            //save company user
+            ref.userid = controller.saveCompany(company);
 
-                //save company user
-                hibsession.save(company);
+            System.out.println(company.toString());
 
-                System.out.println(company.toString());
+            System.out.println("user_id ==> " + ref.userid);
 
-            } catch (HibernateException e) {
-                e.printStackTrace();
-                hibsession.getTransaction().rollback();
-            }
-
-            User u = (User) hibsession.createQuery("FROM Company").setMaxResults(1).uniqueResult();
-
-            int uid = u.getUser_id();
-
-            System.out.println("user_id ==> " + uid);
-
-            ref.userid = uid;
             ref.username = username;
             ref.usertype = type;
 
-            //commit all changes
-            hibsession.getTransaction().commit();
+            controller.commitChanges();
 
             company.setUser_id(ref.userid);
 

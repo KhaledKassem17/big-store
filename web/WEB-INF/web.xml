@@ -18,7 +18,7 @@
     </servlet>
     <servlet>
         <servlet-name>testImagefromBlob</servlet-name>
-        <servlet-class>com.software.team.BigStore.servlets.testImagefromBlob</servlet-class>
+        <servlet-class>com.software.team.BigStore.DBServlets.ImageServlets.testImagefromBlob</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>saveUser</servlet-name>

@@ -5,24 +5,23 @@
 --%>
 
 <%@page import="java.io.OutputStream"%>
-<%@page import="com.software.team.BigStore.controller.ProuductController"%>
+<%@page import="com.software.team.BigStore.DBConnections.ProductController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    
+
     int imageId = Integer.parseInt(request.getParameter("imgId"));
-    
+
     response.setContentType("image/jpeg");
-    ProuductController pc = new ProuductController();
-    
+    ProductController pc = new ProductController();
+
     OutputStream os;
     byte[] img = pc.getProudct(imageId).getProduct_image();
-    
+
     os = response.getOutputStream();
     os.write(img);
-    
+
     os.flush();
     os.close();
-    
 
 %>
