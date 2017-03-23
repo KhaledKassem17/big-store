@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,6 +22,7 @@ public class SubCategory implements Serializable {
 
     private int sub_cat_id;
     private String cat_name;
+
     private byte[] cat_icon;
 
     MainCategory cat_parent_id;
@@ -44,6 +47,7 @@ public class SubCategory implements Serializable {
         this.cat_name = cat_name;
     }
 
+    @Column(columnDefinition = "LONGBLOB")
     public byte[] getCat_icon() {
         return cat_icon;
     }

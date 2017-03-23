@@ -28,31 +28,31 @@ public class UserController {
         session = con.getSession();
     }
 
-    public int checkUserType(int user_id){
+    public int checkUserType(int user_id) {
         //search for that user
-        SQLQuery query = session.createSQLQuery("SELECT `userType` FROM `user` WHERE `user_id` = "+user_id);
+        SQLQuery query = session.createSQLQuery("SELECT `userType` FROM `user` WHERE `user_id` = " + user_id);
         List<Integer> listusertype = query.list();
 
-        if(listusertype.size() <= 0){
+        if (listusertype.size() <= 0) {
             return -1;
-        }else{
+        } else {
             return listusertype.get(0);
         }
     }
 
-    public int getUserId(String email, String password){
+    public int getUserId(String email, String password) {
         //search for that user
-        SQLQuery query = session.createSQLQuery("SELECT user_id FROM `user` WHERE `user_email` = '"+email+"' AND `user_password` = '"+password+"'");
+        SQLQuery query = session.createSQLQuery("SELECT user_id FROM `user` WHERE `user_email` = '" + email + "' AND `user_password` = '" + password + "'");
         List<Integer> listuserids = query.list();
 
-        if(listuserids.size() <= 0){
+        if (listuserids.size() <= 0) {
             return -1;
-        }else{
+        } else {
             return listuserids.get(0);
         }
     }
 
-    public ArrayList<NormalUser> getAllNormals(){
+    public ArrayList<NormalUser> getAllNormals() {
         ArrayList<NormalUser> normals = new ArrayList<NormalUser>();
 
         Query query = session.createQuery("from NormalUser");
@@ -61,7 +61,7 @@ public class UserController {
         return normals;
     }
 
-    public ArrayList<Company> getAllCompanies(){
+    public ArrayList<Company> getAllCompanies() {
         ArrayList<Company> companies = new ArrayList<Company>();
 
         Query query = session.createQuery("from Company");
@@ -70,22 +70,22 @@ public class UserController {
         return companies;
     }
 
-    public User getUser(int user_id){
-        User user = (User) session.get(User.class ,user_id);
+    public User getUser(int user_id) {
+        User user = (User) session.get(User.class, user_id);
         return user;
     }
 
-    public NormalUser getNormal(int user_id){
-        NormalUser user = (NormalUser) session.get(NormalUser.class ,user_id);
+    public NormalUser getNormal(int user_id) {
+        NormalUser user = (NormalUser) session.get(NormalUser.class, user_id);
         return user;
     }
 
-    public Company getCompany(int user_id){
-        Company user = (Company) session.get(Company.class ,user_id);
+    public Company getCompany(int user_id) {
+        Company user = (Company) session.get(Company.class, user_id);
         return user;
     }
 
-    public int saveNormal(NormalUser normal){
+    public int saveNormal(NormalUser normal) {
         session.save(normal);
 
         NormalUser u = (NormalUser) session.createQuery("FROM NormalUser").setMaxResults(1).uniqueResult();
@@ -95,7 +95,7 @@ public class UserController {
         return uid;
     }
 
-    public int saveCompany(Company company){
+    public int saveCompany(Company company) {
         session.save(company);
 
         Company u = (Company) session.createQuery("FROM Company").setMaxResults(1).uniqueResult();
@@ -105,7 +105,7 @@ public class UserController {
         return uid;
     }
 
-    public void commitChanges(){
+    public void commitChanges() {
         session.getTransaction().commit();
     }
 }

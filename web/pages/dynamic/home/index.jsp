@@ -1,4 +1,4 @@
-<%@include file="/pages/header.jsp" %>
+<%@include file="/pages/header.jsp"%>
 <!-- //navigation -->
 <!-- main-slider -->
 

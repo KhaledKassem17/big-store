@@ -1,6 +1,7 @@
 package com.software.team.BigStore.DBServlets.ProductServlets;
 
 import com.software.team.BigStore.Controllers.ProductController;
+import com.software.team.BigStore.Controllers.UserController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspWriter;
 import com.software.team.BigStore.model.Product;
+import com.software.team.BigStore.model.User;
 import java.io.DataOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -31,6 +33,8 @@ public class indexLoadingProducts {
         int col = 0;
         for (Product product : products) {
             col++;
+            System.out.println(product.toString());
+
             try {
                 out.println("<div class=\"agile_top_brands_grids\">"
                         + "<div class=\"col-md-4 top_brand_left\">"
@@ -46,7 +50,7 @@ public class indexLoadingProducts {
 //                        + "<jsp:include page=\"/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp\" >"
 //                        + "  <jsp:param name=\"image\" value=\""+product.getProduct_id()+"\" />"
 //                        + "</jsp:include>"
-                        + "<a href=\"products.html\"><img src=\""+ product.getProduct_image() + "\" alt=\"" + product.getProduct_name() + " image\" class=\"img-responsive\" /></a>"
+                        + "<a href=\"#\"><img src=/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp?imgId="+product.getProduct_id()+" alt=\"" + product.getProduct_name() + " image\" width=133 height=133 class=\"img-responsive\"/></a>"
                         + "<p>" + product.getProduct_name() + "</p>"
                         + "<div class=\"stars\">"
                         + "<i class=\"fa fa-star blue-star\" aria-hidden=\"true\"></i>"
@@ -55,7 +59,7 @@ public class indexLoadingProducts {
                         + "<i class=\"fa fa-star blue-star\" aria-hidden=\"true\"></i>"
                         + "<i class=\"fa fa-star gray-star\" aria-hidden=\"true\"></i>"
                         + "</div>"
-                        + "<h4>$" + product.getProduct_price() + " <span>$" + (product.getProduct_price() + (product.getProduct_price() / 4)) + "</span></h4>"
+                        + "<h4>$" + product.getProduct_price() + " <span>$" + (product.getProduct_price() + (product.getProduct_price() / 5)) + "</span></h4>"
                         + "</div>"
                         + "<div class=\"snipcart-details top_brand_home_details\">"
                         + "<form action=\"#\" method=\"post\">"
@@ -72,6 +76,7 @@ public class indexLoadingProducts {
                         + "<input type=\"submit\" name=\"submit\" value=\"Add to cart\" class=\"button\" />"
                         + "</fieldset>"
                         + "</form>"
+                        + "<p style=\"font-size:16px; font-style=Times New Roman \" > <a href=\"#\">" + product.getOwner().getUser_name() + " </a> | <a href=\"#\"> " + product.getProduct_category().getCat_name() + "</a></p>"
                         + "</div>"
                         + "</div>"
                         + "</figure>"

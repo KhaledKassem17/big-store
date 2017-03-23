@@ -22,6 +22,37 @@ ul,label{
 body a:hover{
 	text-decoration:none;
 }
+/*-- home products --*/
+.date{
+    font-size: 10px;
+    font-weight: lighter;
+    font-family: "Times New Roman", Times, serif;
+    color: #b3b3b3;
+}
+.nameandcat{
+    font-size: 13px;
+    font-weight: lighter;
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+}
+#product_name{
+    color: #9F9F9F;
+}
+#product_name:hover{
+    color: #666;
+}
+
+#product_cat{
+    color: #b3b3b3;
+}
+#product_cat:hover{
+    color: #808080;
+}
+#productfragment{
+    width: 200px;
+    height: 133px;
+}
+
 /*-- header --*/
 span.glyphicon.glyphicon-shopping-cart.my-cart-icon.my-cart-icon-affix {
 	position: relative !important;
@@ -202,6 +233,14 @@ button.w3view-cart:focus{
 .w3ls_logo_products_left1 ul.phone_email li{
 	display:inline-block;
 	color:#212121;
+}
+
+/*-- product fragment --*/
+.nameandcat{
+    font-family: "Times New Roman";
+    font-size: 16px;
+    font-style: italic;
+    
 }
 /*-- //header --*/
 .navbar-default .navbar-nav > li > a {

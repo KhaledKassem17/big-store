@@ -25,6 +25,7 @@ public class Product implements Serializable {
     private int product_id;
 
     private String product_name;
+    @Lob
     private byte[] product_image;
     private String product_details;
     private double product_price;
@@ -62,7 +63,6 @@ public class Product implements Serializable {
         this.product_name = product_name;
     }
 
-    @Lob
     public byte[] getProduct_image() {
         return product_image;
     }
@@ -134,7 +134,10 @@ public class Product implements Serializable {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Product{" + "product_id=" + product_id + ", product_name=" + product_name + ", product_image=" + product_image + ", product_details=" + product_details + ", product_price=" + product_price + ", product_rate=" + product_rate + ", expiry_date=" + expiry_date + ", selled=" + selled + ", post_date=" + post_date + ", product_category=" + product_category + ", owner=" + owner + '}';
+    }
 
 }

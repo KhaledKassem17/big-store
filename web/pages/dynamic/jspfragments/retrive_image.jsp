@@ -4,11 +4,13 @@
     Author     : tito
 --%>
 
+<%@page import="com.software.team.BigStore.Controllers.ProductController"%>
 <%@page import="java.io.OutputStream"%>
-<%@page import="com.software.team.BigStore.DBConnections.ProductController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+
+    System.out.println(request.getParameter("imgId"));
 
     int imageId = Integer.parseInt(request.getParameter("imgId"));
 
