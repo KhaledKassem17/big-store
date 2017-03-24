@@ -24,6 +24,7 @@
 
         try {
 %>
+<div class="agile_top_brands_grids" >
 <div class="col-md-4 top_brand_left">
     <div class="hover14 column">
         <div class="agile_top_brand_left_grid">
@@ -71,6 +72,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <%
             if (col == 3) {

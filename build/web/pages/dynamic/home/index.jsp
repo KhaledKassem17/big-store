@@ -34,12 +34,12 @@
         <div class="grid_3 grid_5">
             <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs" role="tablist">
-                    <li><a href="#expeditions">Recommended Products</a></li>
+                    <li><a href="#expeditions1">Recommended Products</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions1" aria-labelledby="expeditions-tab">
                         <!-- load all recommended products in this section of home page -->
-                        <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:430px;">
+                        <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:450px;">
                             <%@include file="/pages/dynamic/jspfragments/productjsp/recommendedproducts.jsp" %>
                         </div>
                     </div>
@@ -50,12 +50,12 @@
         <div class="grid_3 grid_5">
             <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs" role="tablist">
-                    <li><a href="#expeditions">Latest Offers</a></li>
+                    <li><a href="#expeditions2">Latest Offers</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions2" aria-labelledby="expeditions-tab">
                         <!-- load all latest products in this section of home page -->
-                        <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:430px;">
+                        <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:450px;">
                             <%@include file="/pages/dynamic/jspfragments/productjsp/latestproducts.jsp" %>
                         </div>
                     </div>
@@ -66,12 +66,12 @@
         <div class="grid_3 grid_5">
             <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs" role="tablist">
-                    <li><a href="#expeditions">Interests</a></li>
+                    <li><a href="#expeditions3">Interests</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions3" aria-labelledby="expeditions-tab">
                         <!-- load all interests products in this section of home page -->
-                        <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:430px;">
+                        <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:450px;">
                             <%@include file="/pages/dynamic/jspfragments/productjsp/interestsproducts.jsp" %>
                         </div>
                     </div>
