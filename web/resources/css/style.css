@@ -556,7 +556,7 @@ div#myTabContent {
     padding: 40px 40px;
 }
 .nav-tabs > li {
-    width: 50%;
+    width: 100%;
 }
 .nav-tabs>li>a {
 	margin: 0 0px;
