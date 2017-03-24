@@ -46,28 +46,28 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<br/><br/>
-<div class="grid_3 grid_5">
-    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-        <ul id="myTab" class="nav nav-tabs" role="tablist">
-            <li><a href="#expeditions">Latest Offers</a></li>
-        </ul>
-        <div id="myTabContent" class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+        <br/><br/>
+        <div class="grid_3 grid_5">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs" role="tablist">
+                    <li><a href="#expeditions">Latest Offers</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<br/><br/>
-<div class="grid_3 grid_5">
-    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-        <ul id="myTab" class="nav nav-tabs" role="tablist">
-            <li><a href="#expeditions">Interests</a></li>
-        </ul>
-        <div id="myTabContent" class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+        <br/><br/>
+        <div class="grid_3 grid_5">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs" role="tablist">
+                    <li><a href="#expeditions">Interests</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
