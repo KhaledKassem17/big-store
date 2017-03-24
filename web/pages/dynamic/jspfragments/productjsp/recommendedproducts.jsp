@@ -24,7 +24,6 @@
 
         try {
 %>
-<div style="background-color: #a6e1ec">
 <div class="col-md-4 top_brand_left">
     <div class="hover14 column">
         <div class="agile_top_brand_left_grid">
@@ -75,7 +74,7 @@
 </div>
 <%
             if (col == 3) {
-                %><div class="clearfix"><br/><br/></div></div><%
+                %><div class="clearfix"></div><%
                 col = 0;
             }
         } catch (IOException ex) {
@@ -84,3 +83,4 @@
 
     }
 %>
+<div class="clearfix"></div>
