@@ -38,7 +38,7 @@
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
-                        <!-- load all products in this section of home page using recommendedproducts -->
+                        <!-- load all recommended products in this section of home page -->
                         <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:430px;">
                             <%@include file="/pages/dynamic/jspfragments/productjsp/recommendedproducts.jsp" %>
                         </div>
@@ -54,6 +54,10 @@
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                        <!-- load all latest products in this section of home page -->
+                        <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:430px;">
+                            <%@include file="/pages/dynamic/jspfragments/productjsp/latestproducts.jsp" %>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,6 +70,10 @@
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                        <!-- load all interests products in this section of home page -->
+                        <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:430px;">
+                            <%@include file="/pages/dynamic/jspfragments/productjsp/interestsproducts.jsp" %>
+                        </div>
                     </div>
                 </div>
             </div>

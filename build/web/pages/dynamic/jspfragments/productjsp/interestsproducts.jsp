@@ -1,25 +1,25 @@
-<%-- 
-    Document   : indexloadingproducts
-    Created on : Mar 12, 2017, 4:51:48 PM
+<%--
+    Document   : interestsproducts
+    Created on : Mar 24, 2017, 2:42:36 AM
     Author     : Saad
 --%>
 
 <%@page import="java.io.IOException"%>
 <%@page import="com.software.team.BigStore.Controllers.ProductController"%>
-<%@page import="com.software.team.BigStore.DBServlets.ProductServlets.indexLoadingProducts"%>
-<%@page import="java.sql.ResultSet"%>
 <%@page import="com.software.team.BigStore.model.Product"%>
 <%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 
-    ArrayList<Product> recommendedproducts = new ArrayList<Product>();
+    //list of products that user is interested in
+    ArrayList<Product> interestsproducts = new ArrayList<Product>();
 
-    recommendedproducts = new ProductController().getAllProuducts();
+    //get all products from the database
+    interestsproducts = new ProductController().getAllProuducts();
 
-    int col = 0;
-    for (Product product : recommendedproducts) {
-        col++;
+    int columns = 0;
+    //loop to preview each product
+    for (Product product : interestsproducts) {
+        columns++;
         System.out.println(product.toString());
 
         try {
@@ -73,9 +73,9 @@
     </div>
 </div>
 <%
-            if (col == 3) {
+            if (columns == 3) {
                 %><div class="clearfix"></div><%
-                col = 0;
+                columns = 0;
             }
         } catch (IOException ex) {
 

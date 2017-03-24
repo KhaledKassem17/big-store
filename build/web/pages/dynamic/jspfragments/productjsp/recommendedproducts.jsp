@@ -13,12 +13,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 
-    ArrayList<Product> products = new ArrayList<Product>();
+    ArrayList<Product> recommendedproducts = new ArrayList<Product>();
 
-    products = new ProductController().getAllProuducts();
+    recommendedproducts = new ProductController().getAllProuducts();
 
     int col = 0;
-    for (Product product : products) {
+    for (Product product : recommendedproducts) {
         col++;
         System.out.println(product.toString());
 
