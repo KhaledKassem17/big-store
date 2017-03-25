@@ -9,7 +9,11 @@ import com.software.team.BigStore.DBConnections.Connection;
 import com.software.team.BigStore.model.MainCategory;
 import com.software.team.BigStore.model.Product;
 import com.software.team.BigStore.model.SubCategory;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -25,6 +29,45 @@ public class ProductController {
 
         con = new Connection();
 
+    }
+
+    public ArrayList<Product> getLatestProducts() {
+
+        //get current date
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date currentdate = new Date();
+
+        System.out.println(dateFormat.format(currentdate));
+
+        // convert date to calendar
+        Calendar c = Calendar.getInstance();
+        c.setTime(currentdate);
+
+        c.add(Calendar.DATE, -7);       //substract 7 days from current date
+
+        // convert calendar to date
+        Date manipulatedDate = c.getTime();
+
+        System.out.println(dateFormat.format(manipulatedDate));
+
+        ArrayList<Product> latestprouducts;
+
+        Session session = con.getSession();
+        //select products whose date posted a week ago
+        Query query = session.createQuery("from Product where post_date >= '"+dateFormat.format(manipulatedDate)+"'");
+        latestprouducts = (ArrayList<Product>) query.list();
+
+        return latestprouducts;
+    }
+
+    public ArrayList<Product> getRecommendedProducts() {
+        ArrayList<Product> recommendedprouducts;
+
+        Session session = con.getSession();
+        Query query = session.createQuery("from Product where product_rate > 3");
+        recommendedprouducts = (ArrayList<Product>) query.list();
+
+        return recommendedprouducts;
     }
 
     public ArrayList<Product> getAllProuducts() {
@@ -134,8 +177,7 @@ public class ProductController {
 //        for (int i = 0; i < prs.size(); i++) {
 //            System.out.println(prs.get(i).getProduct_name());
 //        }
-        
-           ArrayList<Product> prs = cn.getProuductsWithSubCategory(2);
+        ArrayList<Product> prs = cn.getProuductsWithSubCategory(2);
 
         for (int i = 0; i < prs.size(); i++) {
             System.out.println(prs.get(i).getProduct_name());
