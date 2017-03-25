@@ -17,6 +17,7 @@ import com.software.team.BigStore.model.NormalUser;
 import com.software.team.BigStore.model.User;
 import com.software.team.BigStore.statics.ref;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -76,7 +77,7 @@ public class CheckLogin extends HttpServlet {
             //redirect to home page
             response.sendRedirect("/SoftwareProject/pages/dynamic/home/index.jsp");
 
-        }else {
+        }else if(ref.usertype == 0) {
             //user is normal
             NormalUser normal = controller.getNormal(ref.userid);
 
@@ -91,6 +92,9 @@ public class CheckLogin extends HttpServlet {
             //redirect to home page
             response.sendRedirect("/SoftwareProject/pages/dynamic/home/index.jsp");
 
+        }else {
+            //redirect to login page
+            response.sendRedirect("/SoftwareProject/pages/dynamic/userlogging/login.jsp");
         }
 
     }

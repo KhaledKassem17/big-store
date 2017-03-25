@@ -20,6 +20,10 @@
         <servlet-name>testImagefromBlob</servlet-name>
         <servlet-class>com.software.team.BigStore.DBServlets.ImageServlets.testImagefromBlob</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateUser</servlet-name>
+        <servlet-class>com.software.team.BigStore.DBServlets.UserServlets.UpdateUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>saveUser</servlet-name>
         <url-pattern>/saveUser</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>CheckLogin</servlet-name>
         <url-pattern>/CheckLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUser</servlet-name>
+        <url-pattern>/UpdateUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

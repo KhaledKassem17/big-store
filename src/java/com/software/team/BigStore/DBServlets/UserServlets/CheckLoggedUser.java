@@ -35,7 +35,7 @@ public class CheckLoggedUser {
                         + "        <li><a href=\"/SoftwareProject/pages/dynamic/payment/index.jsp\" style=\"color:black\">Pay Now</a></li>"
                         + "        <li><a href=\"/SoftwareProject/pages/static/contact.jsp\" style=\"color:black\">Help</a></li>"
 //                        + "        <li role=\"separator\" class=\"divider\"></li>"
-                        + "        <li><a style=\"color:black\" href=\"#\">Setting</a></li>"
+                        + "        <li><a style=\"color:black\" href=\"/SoftwareProject/pages/dynamic/profile/settings.jsp\">Setting</a></li>"
                         + "        <li><a style=\"color:black\" href=\"http://localhost:8080/SoftwareProject/Logout\">Logout</a></li>"
                         + "    </ul>"
                         + "</li>");
@@ -64,7 +64,7 @@ public class CheckLoggedUser {
                         + "        <li><a href=\"/SoftwareProject/pages/dynamic/payment/index.jsp\" style=\"color:black\">Pay Now</a></li>"
                         + "        <li><a href=\"/SoftwareProject/pages/static/contact.jsp\" style=\"color:black\">Help</a></li>"
 //                        + "        <li role=\"separator\" class=\"divider\"></li>"
-                        + "        <li><a style=\"color:black\" href=\"#\">Setting</a></li>"
+                        + "        <li><a style=\"color:black\" href=\"/SoftwareProject/pages/dynamic/profile/settings.jsp\">Setting</a></li>"
                         + "        <li><a style=\"color:black\" href=\"http://localhost:8080/SoftwareProject/Logout\">Logout</a></li>"
                         + "    </ul>"
                         + "</li>");
