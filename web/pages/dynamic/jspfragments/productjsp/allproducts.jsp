@@ -69,7 +69,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <p class='nameandcat' > <a id='product_name' href="#"><%=product.getOwner().getUser_name()%></a> . <a id='product_cat' href="#"><%= product.getProduct_category().getCat_name()%></a></p>
+                                    <p class='nameandcat' > <a id='product_name' href="#"><%=product.getOwner().getUser_name()%></a> . <a id='product_cat' href="/SoftwareProject/pages/dynamic/products/products.jsp?subcat=<%=product.getProduct_category().getSub_cat_id()%>"><%= product.getProduct_category().getCat_name()%></a></p>
                                 </figure>
                             </div>
                         </div>

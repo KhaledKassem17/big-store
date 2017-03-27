@@ -26,8 +26,8 @@
 <!-- //breadcrumbs -->
 <div class="products">
     <div class="container">
+        <p class='date'><%=p.getPost_date()%></p>
         <div class="agileinfo_single">
-
             <div class="col-md-4 agileinfo_single_left">
                 <img id="example" src="/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp?imgId=<%=p.getProduct_id()%>" alt=" " class="img-responsive">
             </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="snipcart-item block">
                     <div class="snipcart-thumb agileinfo_single_right_snipcart">
-                        <h4 class="m-sing">$ <%=p.getProduct_price()%><span>$ <%= p.getProduct_price() + (p.getProduct_price() / 5)%> </span></h4>
+                        <h4 class="m-sing">$ <%=p.getProduct_price()%><span>$ <%= p.getProduct_price() + (p.getProduct_price() / 5)%> </span>&nbsp;&nbsp; Expires at <%=p.getExpiry_date()%> </h4>
                     </div>
                     <div class="snipcart-details agileinfo_single_right_details">
                         <form action="#" method="post">

@@ -85,6 +85,14 @@ public class UserController {
         return user;
     }
 
+    public void updateNormal(NormalUser normal){
+        session.update(normal);
+    }
+
+    public void updateCompany(Company company){
+        session.update(company);
+    }
+
     public int saveNormal(NormalUser normal) {
         session.save(normal);
 
