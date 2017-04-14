@@ -1,0 +1,25 @@
+SMAP
+search_jsp.java
+JSP
+*S JSP
+*F
++ 0 search.jsp
+pages/dynamic/searches/search.jsp
++ 1 header.jsp
+pages/header.jsp
++ 2 checkLoggedUser.jsp
+pages/dynamic/jspfragments/userjsp/checkLoggedUser.jsp
++ 3 footer.jsp
+pages/footer.jsp
+*L
+5,2:54
+9:58,2
+10:60
+1#1,47:61
+5#2,8:108
+14,3:117
+47#1,84:120
+11#0,96:203
+1#3,111:298
+106#0:408
+*E

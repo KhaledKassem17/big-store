@@ -24,6 +24,32 @@
     });
 </script>
 <%@include file="/pages/header.jsp" %>
+<%!
+    public int user_id;
+%>
+
+<%
+    Enumeration<String> en = session.getAttributeNames();
+
+    int flag = 0;
+
+    NormalUser normal = null;
+    Company company = null;
+
+    while (en.hasMoreElements()) {
+        if (en.nextElement().equals("normal")) {
+            normal = (NormalUser) session.getAttribute("normal");
+            user_id = normal.getUser_id();
+            flag = 0;
+        } else if (en.nextElement().equals("company")) {
+            company = (Company) session.getAttribute("company");
+            user_id = company.getUser_id();
+            flag = 1;
+        } else {
+
+        }
+    }
+%>
 <div class="breadcrumbs">
     <div class="container">
         <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
@@ -35,37 +61,17 @@
 <!-- //breadcrumbs -->
 <!-- register -->
 <!-- registration code here -->
-
-<%
-    Enumeration<String> en = session.getAttributeNames();
-
-    int flag = 0;
-
-    NormalUser normal = null;
-    Company company = null;
-    while (en.hasMoreElements()) {
-        if (en.nextElement().equals("normal")) {
-            normal = (NormalUser) session.getAttribute("normal");
-            flag = 0;
-        } else if (en.nextElement().equals("company")) {
-            company = (Company) session.getAttribute("company");
-            flag = 1;
-        } else {
-
-        }
-    }
-%>
 <br/>
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="list-group" id="sidebar">
-                <a href="#" class="list-group-item">Personal Data</a>
-                <a href="#" class="list-group-item">Interests</a>
-                <a href="#" class="list-group-item">Products</a>
+                <a href="#1" class="list-group-item" id="data">Personal Data</a>
+                <a href="#2" class="list-group-item" id="interests">Interests</a>
+                <a href="#3" class="list-group-item" id="products">Products</a>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9" id="1" style="display:none;">
             <br/>
             <h3>Personal Data</h3>
             <br/>
@@ -81,24 +87,24 @@
                         <label class="control-label" for="password" style="font-size: 25px;font-weight: 500;">Password</label><br/><br/><br/><br/>
                     </div>
 
-                <% if (flag == 0) {
-                %>
+                    <% if (flag == 0) {
+                    %>
                     <div style="width:70%; float: right;" >
                         <div class="controls">
                             <input style="font-size: 15px;height: 30px" type="text" id="username" name="username" placeholder="" class="input-xlarge" value="<%=normal.getUser_name()%>">
                             <p class="help-block">Username can contain any letters or numbers, without spaces</p>
                         </div>
-                        <!-- Phone -->
+                        Phone 
                         <div class="controls">
                             <input style="font-size: 15px;height: 30px" type="text" id="phone" name="phone" placeholder="" class="input-xlarge" value="<%=normal.getUser_phone()%>">
                             <p class="help-block">Please provide your phone</p>
                         </div>
-                        <!-- E-mail -->
+                        E-mail 
                         <div class="controls">
                             <input style="font-size: 15px;height: 30px" type="email" id="email" name="email" placeholder="" class="input-xlarge" value="<%=normal.getUser_email()%>">
                             <p class="help-block">Please provide your E-mail</p>
                         </div>
-                        <!-- Password-->
+                        Password
                         <div class="controls">
                             <input style="font-size: 15px;height: 30px" type="password" id="password" name="password" placeholder="" class="input-xlarge" value="<%=normal.getUser_password()%>">
                             <p class="help-block">Password should be at least 4 characters</p>
@@ -120,27 +126,25 @@
 
                 <%
                 } else if (flag == 1) {%>
-                    <div style="width:70%; float: right;" >
-                        <div class="controls">
-                            <input style="font-size: 15px;height: 30px" type="text" id="username" name="username" placeholder="" class="input-xlarge" value="<%=company.getUser_name()%>">
-                            <p class="help-block">Username can contain any letters or numbers, without spaces</p>
-                        </div>
-                        <!-- Phone -->
-                        <div class="controls">
-                            <input style="font-size: 15px;height: 30px" type="text" id="phone" name="phone" placeholder="" class="input-xlarge" value="<%=company.getUser_phone()%>">
-                            <p class="help-block">Please provide your phone</p>
-                        </div>
-                        <!-- E-mail -->
-                        <div class="controls">
-                            <input style="font-size: 15px;height: 30px" type="email" id="email" name="email" placeholder="" class="input-xlarge" value="<%=company.getUser_email()%>">
-                            <p class="help-block">Please provide your E-mail</p>
-                        </div>
-                        <!-- Password-->
-                        <div class="controls">
-                            <input style="font-size: 15px;height: 30px" type="password" id="password" name="password" placeholder="" class="input-xlarge" value="<%=company.getUser_password()%>">
-                            <p class="help-block">Password should be at least 4 characters</p>
-                        </div>
-
+                <div style="width:70%; float: right;" >
+                    <div class="controls">
+                        <input style="font-size: 15px;height: 30px" type="text" id="username" name="username" placeholder="" class="input-xlarge" value="<%=company.getUser_name()%>">
+                        <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+                    </div>
+                    Phone 
+                    <div class="controls">
+                        <input style="font-size: 15px;height: 30px" type="text" id="phone" name="phone" placeholder="" class="input-xlarge" value="<%=company.getUser_phone()%>">
+                        <p class="help-block">Please provide your phone</p>
+                    </div>
+                    E-mail 
+                    <div class="controls">
+                        <input style="font-size: 15px;height: 30px" type="email" id="email" name="email" placeholder="" class="input-xlarge" value="<%=company.getUser_email()%>">
+                        <p class="help-block">Please provide your E-mail</p>
+                    </div>
+                    Password
+                    <div class="controls">
+                        <input style="font-size: 15px;height: 30px" type="password" id="password" name="password" placeholder="" class="input-xlarge" value="<%=company.getUser_password()%>">
+                        <p class="help-block">Password should be at least 4 characters</p>
                     </div>
 
                 </div>
@@ -175,9 +179,51 @@
                 <br/>
                 <input type="submit" value="Update Data"><br/>
             </form>
+            <br/>
         </div>
-        <div class="span9"></div>
+        <div class="col-md-9" id="2" style="display:none;">
+            <br/>
+            <h3>Interests</h3>
+            <br/>
+            <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:450px;">
+                <%@include file="/pages/dynamic/jspfragments/productjsp/interestsproducts.jsp" %>
+            </div>
+            <br/>
+        </div>
+        <div class="col-md-9" id="3" style="display:none;">
+            <br/>
+            <h3>Products</h3>
+            <br/>
+            <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:450px;">
+                <jsp:include page="/pages/dynamic/jspfragments/productjsp/userproducts.jsp">
+                    <jsp:param name="user_id" value="<%=user_id%>" />
+                </jsp:include>
+            </div>
+            <br/>
+        </div>
     </div>
 </div>
+
+<script>
+    $('#data').on('click', function () {
+        $('#1').show();
+        $('#2').hide();
+        $('#3').hide();
+    });
+</script>
+<script>
+    $('#interests').on('click', function () {
+        $('#1').hide();
+        $('#2').show();
+        $('#3').hide();
+    });
+</script>
+<script>
+    $('#products').on('click', function () {
+        $('#1').hide();
+        $('#2').hide();
+        $('#3').show();
+    });
+</script>
 
 <%@include file="/pages/footer.jsp" %>

@@ -52,6 +52,24 @@ public class UserController {
         }
     }
 
+    public ArrayList<NormalUser> getNormalUser(String name){
+        ArrayList<NormalUser> normals = new ArrayList<NormalUser>();
+
+        Query query = session.createQuery("from User where userType=0 AND user_name = '"+name+"'");
+        normals = (ArrayList<NormalUser>) query.list();
+
+        return normals;
+    }
+
+    public ArrayList<Company> getCompanyUser(String name){
+        ArrayList<Company> companies = new ArrayList<Company>();
+
+        Query query = session.createQuery("from User where userType=1 AND user_name = '"+name+"'");
+        companies = (ArrayList<Company>) query.list();
+
+        return companies;
+    }
+
     public ArrayList<NormalUser> getAllNormals() {
         ArrayList<NormalUser> normals = new ArrayList<NormalUser>();
 

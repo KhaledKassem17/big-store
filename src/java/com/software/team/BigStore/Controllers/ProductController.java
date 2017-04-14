@@ -26,9 +26,35 @@ public class ProductController {
     private Connection con = null;
 
     public ProductController() {
-
         con = new Connection();
+    }
 
+    public SubCategory getSubCategory(int cat_id) {
+        SubCategory cat;
+        Session session = con.getSession();
+
+        cat = (SubCategory) session.get(SubCategory.class, cat_id);
+        return cat;
+    }
+
+    public ArrayList<SubCategory> getCategories(String name){
+        ArrayList<SubCategory> Categories;
+
+        Session session = con.getSession();
+        Query query = session.createQuery("from SubCategory where cat_name ='"+name+"'");
+        Categories = (ArrayList<SubCategory>) query.list();
+
+        return Categories;
+    }
+
+    public ArrayList<Product> getProducts(String product) {
+        ArrayList<Product> products = new ArrayList<Product>();
+
+        Session session = con.getSession();
+        Query query = session.createQuery("from Product where product_name = '" + product + "'");
+        products = (ArrayList<Product>) query.list();
+
+        return products;
     }
 
     public ArrayList<Product> getLatestProducts() {
@@ -54,10 +80,20 @@ public class ProductController {
 
         Session session = con.getSession();
         //select products whose date posted a week ago
-        Query query = session.createQuery("from Product where post_date >= '"+dateFormat.format(manipulatedDate)+"'");
+        Query query = session.createQuery("from Product where post_date >= '" + dateFormat.format(manipulatedDate) + "'");
         latestprouducts = (ArrayList<Product>) query.list();
 
         return latestprouducts;
+    }
+
+    public ArrayList<Product> getUserProducts(int user_id) {
+        ArrayList<Product> userprouducts;
+
+        Session session = con.getSession();
+        Query query = session.createQuery("from Product where owner = " + user_id);
+        userprouducts = (ArrayList<Product>) query.list();
+
+        return userprouducts;
     }
 
     public ArrayList<Product> getRecommendedProducts() {
