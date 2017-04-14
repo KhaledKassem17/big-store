@@ -76,7 +76,7 @@
                                 <div class="w3l_search">
                                     <br/>
                                     <form action="/SoftwareProject/pages/dynamic/searches/search.jsp" method="post">
-                                        <input type="search" name="Search" placeholder="Search for anything..." required="">
+                                        <input type="search" name="keyword" placeholder="Search for anything..." style="border-radius:5px" required="">
                                         <button type="submit" class="btn btn-default search" aria-label="Left Align">
                                             <i class="fa fa-search" aria-hidden="true"> </i>
                                         </button>

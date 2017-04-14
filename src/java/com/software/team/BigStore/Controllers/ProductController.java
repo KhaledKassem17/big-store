@@ -29,6 +29,29 @@ public class ProductController {
         con = new Connection();
     }
 
+    public ArrayList<SubCategory> getCustomSubCats(String name){
+        ArrayList<SubCategory> cats = new ArrayList<SubCategory>();
+
+        Session session = con.getSession();
+
+        Query query = session.createQuery("from SubCategory where cat_name LIKE '%"+name+"%'");
+        cats = (ArrayList<SubCategory>) query.list();
+
+        return cats;
+    }
+
+    public ArrayList<Product> getCustomProducts(String name){
+        ArrayList<Product> products = new ArrayList<Product>();
+
+        Session session = con.getSession();
+
+        Query query = session.createQuery("from Product where product_name LIKE '%"+name+"%'");
+        products = (ArrayList<Product>) query.list();
+
+        return products;
+
+    }
+
     public SubCategory getSubCategory(int cat_id) {
         SubCategory cat;
         Session session = con.getSession();

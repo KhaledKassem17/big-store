@@ -4,10 +4,6 @@
     Author     : Saad
 --%>
 
-<%
-    String keyword = request.getParameter("Search");
-%>
-
 <%@include file="/pages/header.jsp"%>
 <style>
     /* Style the tab */
@@ -51,8 +47,6 @@
         border-top: none;
         margin-left: 40px;
         margin-right: 50px;
-        height: 500px;
-        background-color: #cecccc;
     }
 
     div.search {
@@ -68,27 +62,45 @@
 </style>
 
 <br/>
+<%
+    String keyword = request.getParameter("keyword");
+%>
 <div class="tab">
     <button class="tablinks" onclick="openCity(event, 'companies')">Companies</button>
     <button class="tablinks" onclick="openCity(event, 'normaluser')">Normal users</button>
     <button class="tablinks" onclick="openCity(event, 'product')">Product</button>
     <button class="tablinks" onclick="openCity(event, 'categories')">Categories</button>
 </div>
-
 <div id="companies" class="tabcontent">
-    <%@include file="/SoftwareProject/pages/dynamic/searches/companytab.jsp?company=<%=keyword%>" %>
+    <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:450px;">
+        <jsp:include page="/pages/dynamic/searches/companytab.jsp">
+            <jsp:param name="keyword" value="<%=keyword%>" />
+        </jsp:include>
+    </div>
 </div>
 
 <div id="normaluser" class="tabcontent">
-    <%@include file="/SoftwareProject/pages/dynamic/searches/normalusertab.jsp?normal=<%=keyword%>" %>
+    <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:450px;">
+        <jsp:include page="/pages/dynamic/searches/normalusertab.jsp">
+            <jsp:param name="keyword" value="<%=keyword%>"/>
+        </jsp:include>
+    </div>
 </div>
 
 <div id="product" class="tabcontent">
-    <%@include file="/SoftwareProject/pages/dynamic/searches/producttab.jsp?product=<%=keyword%>" %>
+    <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:450px;">
+        <jsp:include page="/pages/dynamic/searches/producttab.jsp">
+            <jsp:param name="keyword" value="<%=keyword%>"/>
+        </jsp:include>
+    </div>
 </div>
 
 <div id="categories" class="tabcontent">
-    <%@include file="/SoftwareProject/pages/dynamic/searches/categorytab.jsp?category=<%=keyword%>" %>
+    <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:450px;">
+        <jsp:include page="/pages/dynamic/searches/categorytab.jsp">
+            <jsp:param name="keyword" value="<%=keyword%>"/>
+        </jsp:include>
+    </div>
 </div>
 <br/><br/>
 

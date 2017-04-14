@@ -53,11 +53,6 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write('\n');
       out.write('\n');
-
-//    String keyword = request.getParameter("keyword");
-
-      out.write('\n');
-      out.write('\n');
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
@@ -148,8 +143,8 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                </div>\r\n");
       out.write("                                <div class=\"w3l_search\">\r\n");
       out.write("                                    <br/>\r\n");
-      out.write("                                    <form action=\"#\" method=\"post\">\r\n");
-      out.write("                                        <input type=\"search\" name=\"Search\" placeholder=\"Search for a Product...\" required=\"\">\r\n");
+      out.write("                                    <form action=\"/SoftwareProject/pages/dynamic/searches/search.jsp\" method=\"post\">\r\n");
+      out.write("                                        <input type=\"search\" name=\"keyword\" placeholder=\"Search for anything...\" style=\"border-radius:5px\" required=\"\">\r\n");
       out.write("                                        <button type=\"submit\" class=\"btn btn-default search\" aria-label=\"Left Align\">\r\n");
       out.write("                                            <i class=\"fa fa-search\" aria-hidden=\"true\"> </i>\r\n");
       out.write("                                        </button>\r\n");
@@ -243,8 +238,6 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        border-top: none;\n");
       out.write("        margin-left: 40px;\n");
       out.write("        margin-right: 50px;\n");
-      out.write("        height: 500px;\n");
-      out.write("        background-color: #cecccc;\n");
       out.write("    }\n");
       out.write("\n");
       out.write("    div.search {\n");
@@ -260,23 +253,46 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</style>\n");
       out.write("\n");
       out.write("<br/>\n");
+
+    String keyword = request.getParameter("keyword");
+
+      out.write("\n");
       out.write("<div class=\"tab\">\n");
       out.write("    <button class=\"tablinks\" onclick=\"openCity(event, 'companies')\">Companies</button>\n");
       out.write("    <button class=\"tablinks\" onclick=\"openCity(event, 'normaluser')\">Normal users</button>\n");
       out.write("    <button class=\"tablinks\" onclick=\"openCity(event, 'product')\">Product</button>\n");
       out.write("    <button class=\"tablinks\" onclick=\"openCity(event, 'categories')\">Categories</button>\n");
       out.write("</div>\n");
-      out.write("\n");
       out.write("<div id=\"companies\" class=\"tabcontent\">\n");
+      out.write("    <div class=\"agile_top_brands_grids\" style=\"overflow:scroll;white-space: nowrap;height:450px;\">\n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "/pages/dynamic/searches/companytab.jsp" + "?" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("keyword", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode(String.valueOf(keyword), request.getCharacterEncoding()), out, false);
+      out.write("\n");
+      out.write("    </div>\n");
       out.write("</div>\n");
       out.write("\n");
       out.write("<div id=\"normaluser\" class=\"tabcontent\">\n");
+      out.write("    <div class=\"agile_top_brands_grids\" style=\"overflow:scroll;white-space: nowrap;height:450px;\">\n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "/pages/dynamic/searches/normalusertab.jsp" + "?" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("keyword", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode(String.valueOf(keyword), request.getCharacterEncoding()), out, false);
+      out.write("\n");
+      out.write("    </div>\n");
       out.write("</div>\n");
       out.write("\n");
       out.write("<div id=\"product\" class=\"tabcontent\">\n");
+      out.write("    <div class=\"agile_top_brands_grids\" style=\"overflow:scroll;white-space: nowrap;height:450px;\">\n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "/pages/dynamic/searches/producttab.jsp" + "?" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("keyword", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode(String.valueOf(keyword), request.getCharacterEncoding()), out, false);
+      out.write("\n");
+      out.write("    </div>\n");
       out.write("</div>\n");
       out.write("\n");
       out.write("<div id=\"categories\" class=\"tabcontent\">\n");
+      out.write("    <div class=\"agile_top_brands_grids\" style=\"overflow:scroll;white-space: nowrap;height:450px;\">\n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "/pages/dynamic/searches/categorytab.jsp" + "?" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("keyword", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode(String.valueOf(keyword), request.getCharacterEncoding()), out, false);
+      out.write("\n");
+      out.write("    </div>\n");
       out.write("</div>\n");
       out.write("<br/><br/>\n");
       out.write("\n");
