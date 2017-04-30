@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspWriter;
 import com.software.team.BigStore.model.Company;
 import com.software.team.BigStore.model.NormalUser;
-import com.software.team.BigStore.statics.ref;
 
 /**
  *

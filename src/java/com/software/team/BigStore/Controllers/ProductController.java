@@ -29,27 +29,96 @@ public class ProductController {
         con = new Connection();
     }
 
-    public ArrayList<SubCategory> getCustomSubCats(String name){
+    public void insertProudct(Product pr) {
+
+        Session session = con.getSession();
+        session.save(pr);
+        session.getTransaction().commit();
+        session.close();
+
+    }
+
+    public void updateProduct(int pr_id, Product p) {
+        Session session = con.getSession();
+        Product pr = (Product) session.get(Product.class, pr_id);
+        System.out.println("------------ > " + pr_id);
+        pr.setProduct_name(p.getProduct_name());
+        pr.setExpiry_date(p.getExpiry_date());
+        pr.setProduct_category(p.getProduct_category());
+        pr.setProduct_details(p.getProduct_details());
+        pr.setProduct_price(p.getProduct_price());
+        if (p.getProduct_image() != null) {
+            pr.setProduct_image(p.getProduct_image());
+        }
+        session.save(pr);
+        session.getTransaction().commit();
+        session.close();
+
+    }
+
+    public void deleteProuduct(int pr_id) {
+
+        Session session = con.getSession();
+        Product pr = (Product) session.get(Product.class, pr_id);
+        session.delete(pr);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+//     public void deleteProuduct(int pr_id) {
+//
+//        Session session = con.getSession();
+//        Query query = session.createQuery("delete Product where product_id = :ID ");
+//        query.setParameter("ID", pr_id);
+//
+//        int result = query.executeUpdate();
+//
+//        if (result > 0) {
+//            System.out.println("Expensive products was removed");
+//        }
+//        session.getTransaction().commit();
+//        session.close();
+//    }
+    public ArrayList<Product> getProudctsForUser(int userId) {
+        ArrayList<Product> all_prouducts;
+
+        Session session = con.getSession();
+        Query query = session.createQuery("from Product where owner_id = " + userId);
+        all_prouducts = (ArrayList<Product>) query.list();
+        session.close();
+
+        return all_prouducts;
+    }
+
+    public ArrayList<SubCategory> getCustomSubCats(String name) {
         ArrayList<SubCategory> cats = new ArrayList<SubCategory>();
 
         Session session = con.getSession();
 
-        Query query = session.createQuery("from SubCategory where cat_name LIKE '%"+name+"%'");
+        Query query = session.createQuery("from SubCategory where cat_name LIKE '%" + name + "%'");
         cats = (ArrayList<SubCategory>) query.list();
 
         return cats;
     }
 
-    public ArrayList<Product> getCustomProducts(String name){
+    public ArrayList<Product> getCustomProducts(String name) {
         ArrayList<Product> products = new ArrayList<Product>();
 
         Session session = con.getSession();
 
-        Query query = session.createQuery("from Product where product_name LIKE '%"+name+"%'");
+        Query query = session.createQuery("from Product where product_name LIKE '%" + name + "%'");
         products = (ArrayList<Product>) query.list();
 
         return products;
 
+    }
+
+    public SubCategory getSubWithId(int id) {
+        Session session = con.getSession();
+        SubCategory subcat = (SubCategory) session.get(SubCategory.class, id);
+
+        session.close();
+        return subcat;
     }
 
     public SubCategory getSubCategory(int cat_id) {
@@ -60,11 +129,11 @@ public class ProductController {
         return cat;
     }
 
-    public ArrayList<SubCategory> getCategories(String name){
+    public ArrayList<SubCategory> getCategories(String name) {
         ArrayList<SubCategory> Categories;
 
         Session session = con.getSession();
-        Query query = session.createQuery("from SubCategory where cat_name ='"+name+"'");
+        Query query = session.createQuery("from SubCategory where cat_name ='" + name + "'");
         Categories = (ArrayList<SubCategory>) query.list();
 
         return Categories;

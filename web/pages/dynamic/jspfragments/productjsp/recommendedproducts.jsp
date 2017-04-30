@@ -4,6 +4,9 @@
     Author     : Saad
 --%>
 
+<%@page import="com.software.team.BigStore.model.NormalUser"%>
+<%@page import="com.software.team.BigStore.Controllers.UserController"%>
+<%@page import="com.software.team.BigStore.model.User"%>
 <%@page import="java.io.IOException"%>
 <%@page import="com.software.team.BigStore.Controllers.ProductController"%>
 <%@page import="com.software.team.BigStore.DBServlets.ProductServlets.indexLoadingProducts"%>
@@ -11,7 +14,20 @@
 <%@page import="com.software.team.BigStore.model.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%! 
+    int uid;
+%>
 <%
+
+    HttpSession data = request.getSession();
+
+    if(session.getAttribute("normal") != null) {
+        uid = ((User)data.getAttribute("normal")).getUser_id();
+    }else if(session.getAttribute("company") != null) {
+        uid = ((User)data.getAttribute("company")).getUser_id();
+    }else{
+        uid = -1;
+    }
 
     ArrayList<Product> recommendedproducts = new ArrayList<Product>();
 
@@ -67,8 +83,27 @@
                                     </fieldset>
                                 </form>
                             </div>
+                            <details style="cursor: pointer;outline: none;">
+
+                                <br>
+                                <h4><%=product.getProduct_price()%><span>$ <%= product.getProduct_price() + (product.getProduct_price() / 5)%> </span></h4>
+
+                                <p style="text-align: center;font-size: 13px">
+                                    <%=product.getProduct_details()%>
+                                </p>
+
+                                <br>
+                            </details>
                         </div>
-                        <p class='nameandcat' > <a id='product_name' href="#"><%=product.getOwner().getUser_name()%></a> . <a id='product_cat' href="/SoftwareProject/pages/dynamic/products/products.jsp?subcat=<%=product.getProduct_category().getSub_cat_id()%>"><%= product.getProduct_category().getCat_name()%></a></p>
+
+                        <%if(uid == -1){
+                            %><p class='nameandcat' > <a id='product_name' href="/SoftwareProject/pages/dynamic/profile/profile.jsp?visited_user=<%=product.getOwner().getUser_id()%>"><%=product.getOwner().getUser_name()%></a> . <%
+                        }else if (product.getOwner().getUser_id() != uid) {%>
+                        <p class='nameandcat' > <a id='product_name' href="/SoftwareProject/pages/dynamic/profile/profile.jsp?visited_user=<%=product.getOwner().getUser_id()%>"><%=product.getOwner().getUser_name()%></a> . 
+                            <% } else {%>
+                        <p class='nameandcat' > <a id='product_name' href="/SoftwareProject/pages/dynamic/profile/profile.jsp"><%=product.getOwner().getUser_name()%></a> . 
+                            <% }%>
+                        <a id='product_cat' href="/SoftwareProject/pages/dynamic/products/products.jsp?subcat=<%=product.getProduct_category().getSub_cat_id()%>"><%=product.getProduct_category().getCat_name()%></a></p>
                     </figure>
                 </div>
             </div>

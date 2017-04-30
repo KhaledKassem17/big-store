@@ -1,6 +1,7 @@
 package com.software.team.BigStore.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,12 +20,12 @@ public class Prouduct_like implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "prouduct_id")
-    private User prouduct;
+    private Product prouduct;
 
     public Prouduct_like() {
     }
 
-    public Prouduct_like(int like_id, User liker, User prouduct) {
+    public Prouduct_like(int like_id, User liker, Product prouduct) {
         this.like_id = like_id;
         this.liker = liker;
         this.prouduct = prouduct;
@@ -46,11 +47,11 @@ public class Prouduct_like implements Serializable {
         this.liker = liker;
     }
 
-    public User getProuduct() {
+    public Product getProuduct() {
         return prouduct;
     }
 
-    public void setProuduct(User prouduct) {
+    public void setProuduct(Product prouduct) {
         this.prouduct = prouduct;
     }
 

@@ -8,7 +8,7 @@ package com.software.team.BigStore.DBServlets.UserServlets;
 import com.software.team.BigStore.Controllers.UserController;
 import com.software.team.BigStore.model.Company;
 import com.software.team.BigStore.model.NormalUser;
-import com.software.team.BigStore.statics.ref;
+import com.software.team.BigStore.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -46,18 +46,25 @@ public class UpdateUser extends HttpServlet {
             response.sendRedirect("/SoftwareProject/pages/dynamic/profile/settings.jsp");
         }
 
-        int type;
+        int type, user_id;
         if (request.getParameter("type").equalsIgnoreCase("company")) {
             type = 1;
         } else {
             type = 0;
         }
 
-        NormalUser normal;
-        Company company;
+        System.out.println("user_id " + request.getParameter("user_id"));
+
+        user_id = Integer.parseInt(request.getParameter("user_id"));
+
+        System.out.println("user_id " + user_id);
+
         UserController controller = new UserController();
 
         HttpSession session = request.getSession();
+
+        NormalUser normal = null;
+        Company company = null;
 
         if (type == 0) {
             System.out.println("type ==> " + type);
@@ -70,46 +77,90 @@ public class UpdateUser extends HttpServlet {
                 response.sendRedirect("/SoftwareProject/pages/dynamic/userlogging/registered.jsp");
             }
 
-            normal = new NormalUser(gender, date, username, password, "0", "0", phone, email, type, new byte[]{});
+            if (session.getAttribute("normal") != null) {
+                normal = (NormalUser) session.getAttribute("normal");
 
-            normal.setUser_id(ref.userid);
+                normal.setNormal_gender(gender);
+                normal.setBirth_date(date);
+                normal.setUser_name(username);
+                normal.setUser_password(password);
+                normal.setUser_phone(phone);
+                normal.setUser_email(email);
+                normal.setUserType(type);
 
-            //update normal user
-            controller.updateNormal(normal);
+                controller.updateSpecificNormal(user_id, gender, date, username, password, phone, email, type);
 
-            System.out.println(normal.toString());
+                System.out.println(normal.toString());
 
+            } else if (session.getAttribute("company") != null) {
+                company = (Company) session.getAttribute("company");
+                User u = company;
+                normal = (NormalUser) u;
+                normal.setBirth_date(date);
+                normal.setNormal_gender(gender);
+                normal.setUser_name(username);
+                normal.setUser_password(password);
+                normal.setUser_phone(phone);
+                normal.setUser_email(email);
+                normal.setUserType(type);
+
+//                NormalUser normal = new NormalUser(gender, date, username, password, phone, email, type);
+                controller.updateSpecificNormal(user_id, gender, date, username, password, phone, email, type);
+
+                System.out.println(normal.toString());
+
+            } else {
+                response.sendRedirect("../userlogging/login.jsp");
+            }
             controller.commitChanges();
 
-            //transfer normal user data through session
-            session.setAttribute("normal", normal);
-
-            //redirect to home page
-            response.sendRedirect("/SoftwareProject/pages/dynamic/home/index.jsp");
         } else if (type == 1) {
             System.out.println("type ==> " + type);
 
             String website = request.getParameter("companywebsite");
             String address = request.getParameter("address");
 
-            company = new Company(website, address, username, password, "0", "0", phone, email, type, new byte[]{});
+            if (session.getAttribute("normal") != null) {
+                normal = (NormalUser) session.getAttribute("normal");
+                User u = normal;
+                company = (Company) u;
+                company.setCompany_website(website);
+                company.setAddress(address);
+                company.setUser_name(username);
+                company.setUser_password(password);
+                company.setUser_phone(phone);
+                company.setUser_email(email);
+                company.setUserType(type);
 
-            company.setUser_id(ref.userid);
+                controller.updateSpecificCompany(user_id, address, website, username, password, phone, email, type);
 
-            //update company user
-            controller.updateCompany(company);
+                System.out.println(company.toString());
 
-            System.out.println(company.toString());
+            } else if (session.getAttribute("company") != null) {
+                company = (Company) session.getAttribute("company");
+                company.setCompany_website(website);
+                company.setAddress(address);
+                company.setUser_name(username);
+                company.setUser_password(password);
+                company.setUser_phone(phone);
+                company.setUser_email(email);
+                company.setUserType(type);
+
+//                Company company = new Company(website, address, username, password, phone, email, type);
+                controller.updateSpecificCompany(user_id, address, website, username, password, phone, email, type);
+
+                System.out.println(company.toString());
+
+            } else {
+                response.sendRedirect("../userlogging/login.jsp");
+            }
 
             controller.commitChanges();
 
-            //transfer company user data through session
-            session.setAttribute("company", company);
-
-            //redirect to home page
-            response.sendRedirect("/SoftwareProject/pages/dynamic/home/index.jsp");
         }
 
+        //redirect to home page
+        response.sendRedirect("/SoftwareProject/pages/dynamic/home/index.jsp");
 
     }
 

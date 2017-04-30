@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page trimDirectiveWhitespaces="true" %>
 <html>
     <head>
         <title>Big store</title>     

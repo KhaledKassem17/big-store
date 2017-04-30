@@ -1,4 +1,5 @@
 
+<%@page import="com.software.team.BigStore.model.User"%>
 <%@page import="java.io.IOException"%>
 <%@page import="com.software.team.BigStore.model.SubCategory"%>
 <%@page import="com.software.team.BigStore.model.MainCategory"%>
@@ -22,6 +23,16 @@
 %>
 
 <%
+    int puid;
+    HttpSession data = request.getSession();
+
+    if(session.getAttribute("normal") != null) {
+        puid = ((User)data.getAttribute("normal")).getUser_id();
+    }else if(session.getAttribute("company") != null) {
+        puid = ((User)data.getAttribute("company")).getUser_id();
+    }else{
+        puid = -1;
+    }
     // requests parameters are 
     // cat --> main category
     // subcat -->sub category 
@@ -30,10 +41,10 @@
     if (catvalue != null) {
         int cat = Integer.parseInt(catvalue);
         prouducts = pr_c.getProuductsWithMainCategory(cat);
-    }else if (subcatvalue != null) {
+    } else if (subcatvalue != null) {
         int subcat = Integer.parseInt(subcatvalue);
         prouducts = pr_c.getProuductsWithSubCategory(subcat);
-    }else {
+    } else {
         prouducts = pr_c.getAllProuducts();
     }
 
@@ -125,17 +136,17 @@
 
             <%-- this loop  is to display specified number of rows  --%>
 
-<%
-            int columns = 0;
-            //loop to preview each product
-            for (Product product : prouducts) {
-                columns++;
-                System.out.println(product.toString());
+            <%
+                int columns = 0;
+                //loop to preview each product
+                for (Product product : prouducts) {
+                    columns++;
+                    System.out.println(product.toString());
 
-                session.setAttribute("product", product);
+                    session.setAttribute("product", product);
 
-                try {
-        %>
+                    try {
+            %>
             <div class="agile_top_brands_grids" >
                 <div class="col-md-4 top_brand_left">
                     <div class="hover14 column">
@@ -179,8 +190,14 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <p class='nameandcat' > <a id='product_name' href="#"><%=product.getOwner().getUser_name()%></a> . <a id='product_cat' href="#"><%= product.getProduct_category().getCat_name()%></a></p>
-                                </figure>
+                                    <%if (puid == -1) {
+                                    %><p class='nameandcat' > <a id='product_name' href="/SoftwareProject/pages/dynamic/profile/profile.jsp?visited_user=<%=product.getOwner().getUser_id()%>"><%=product.getOwner().getUser_name()%></a> . <%
+                            } else if (product.getOwner().getUser_id() != puid) {%>
+                                    <p class='nameandcat' > <a id='product_name' href="/SoftwareProject/pages/dynamic/profile/profile.jsp?visited_user=<%=product.getOwner().getUser_id()%>"><%=product.getOwner().getUser_name()%></a> . 
+                                        <% } else {%>
+                                    <p class='nameandcat' > <a id='product_name' href="/SoftwareProject/pages/dynamic/profile/profile.jsp"><%=product.getOwner().getUser_name()%></a> . 
+                                        <% }%>
+                                        <a id='product_cat' href="/SoftwareProject/pages/dynamic/products/products.jsp?subcat=<%=product.getProduct_category().getSub_cat_id()%>"><%=product.getProduct_category().getCat_name()%></a></p>                                </figure>
                             </div>
                         </div>
                     </div>
@@ -189,13 +206,13 @@
             <%
                 if (columns == 3) {
             %><div class="clearfix"></div><%
-                        columns = 0;
+                            columns = 0;
+                        }
+                    } catch (IOException ex) {
+
                     }
-                } catch (IOException ex) {
 
                 }
-
-            }
             %>
 
             <%-- this is the end of products div --%>

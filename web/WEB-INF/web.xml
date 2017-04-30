@@ -24,6 +24,18 @@
         <servlet-name>UpdateUser</servlet-name>
         <servlet-class>com.software.team.BigStore.DBServlets.UserServlets.UpdateUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CommentServlet</servlet-name>
+        <servlet-class>com.software.team.BigStore.DBServlets.SingleProduct.CommentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeImage</servlet-name>
+        <servlet-class>com.software.team.BigStore.DBServlets.ImageServlets.ChangeImage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProduct</servlet-name>
+        <servlet-class>com.software.team.BigStore.DBServlets.ProductServlets.UpdateProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>saveUser</servlet-name>
         <url-pattern>/saveUser</url-pattern>
@@ -48,10 +60,20 @@
         <servlet-name>UpdateUser</servlet-name>
         <url-pattern>/UpdateUser</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentServlet</servlet-name>
+        <url-pattern>/CommentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeImage</servlet-name>
+        <url-pattern>/ChangeImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProduct</servlet-name>
+        <url-pattern>/UpdateProduct</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>1440</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>pages/dynamic/home/index.jsp</welcome-file>

@@ -29,18 +29,21 @@ else {
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
-                <figure>
-                    <div class="snipcart-item block">
-                        <div class="snipcart-thumb">
-                            <a href="#"><img src="http://localhost:8080/SoftwareProject/pages/dynamic/jspfragments/productjsp/retriveCatImage.jsp?imgId=<%=sub.getSub_cat_id()%>" id='productfragment' class="img-responsive" ></a>
-                            <p><%=sub.getCat_name()%></p>
+                <div class="agile_top_brand_left_grid1">
+                    <figure>
+                        <div class="snipcart-item block">
+                            <div class="snipcart-thumb">
+                                <a href="/SoftwareProject/pages/dynamic/products/products.jsp?subcat=<%=sub.getSub_cat_id()%>"><img src="http://localhost:8080/SoftwareProject/pages/dynamic/jspfragments/productjsp/retriveCatImage.jsp?imgId=<%=sub.getSub_cat_id()%>" id='productfragment' class="img-responsive" ></a>
+                                <p><%=sub.getCat_name()%></p>
+                            </div>
                         </div>
-                    </div>
-                </figure>
+                    </figure>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <%
     if (columns == 3) {
 %><div class="clearfix"></div><%

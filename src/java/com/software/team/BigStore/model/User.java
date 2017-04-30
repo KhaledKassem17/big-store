@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
@@ -21,16 +20,22 @@ import javax.persistence.Table;
  *
  * @author tito
  */
+
 @Entity
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User implements Serializable {
 
+    @Override
+    public String toString() {
+        return "User{" + "user_id=" + user_id + ", user_name=" + user_name + ", user_password=" + user_password + ", credit_card=" + credit_card + ", user_location=" + user_location + ", user_phone=" + user_phone + ", user_email=" + user_email + ", userFullname=" + userFullname + ", userType=" + userType + ", profile_image=" + profile_image + ", intersts=" + intersts + '}';
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
 
-    private String user_name, user_password, credit_card, user_location, user_phone, user_email;
+    private String user_name, user_password, credit_card, user_location, user_phone, user_email,userFullname;
 
     /*
     - 0 if normal user
@@ -154,4 +159,12 @@ public class User implements Serializable {
         this.intersts = intersts;
     }
 
+    public String getUserFullname() {
+        return userFullname;
+    }
+
+    public void setUserFullname(String userFullname) {
+        this.userFullname = userFullname;
+    }
+    
 }

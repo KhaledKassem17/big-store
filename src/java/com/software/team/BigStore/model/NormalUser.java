@@ -38,6 +38,16 @@ public class NormalUser extends User {
 
     }
 
+    public NormalUser(String gender, String date, String username, String password, String phone, String email, int type) {
+        this.normal_gender = gender;
+        this.birth_date=date;
+        this.setUser_name(username);
+        this.setUser_password(password);
+        this.setUser_phone(phone);
+        this.setUser_email(email);
+        this.setUserType(type);
+    }
+
     public String getNormal_gender() {
         return normal_gender;
     }

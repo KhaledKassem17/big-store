@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import com.software.team.BigStore.model.Company;
 import com.software.team.BigStore.model.NormalUser;
 import com.software.team.BigStore.model.User;
-import com.software.team.BigStore.statics.ref;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import org.hibernate.Query;
@@ -50,53 +49,43 @@ public class CheckLogin extends HttpServlet {
         String password = request.getParameter("password");
 
         HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(24*60*60);
 
         boolean submitted = false;
 
-        ref.userid = controller.getUserId(email, password);
+        int userid;
 
-        if (ref.userid <= 0){
-            response.sendRedirect("/SoftwareProject/pages/dynamic/userlogging/login.jsp");
-        }
+        userid = controller.getUserId(email, password);
+        User u = controller.getUser(userid);
 
-        ref.usertype = controller.checkUserType(ref.userid);
+        if (userid >= 0) {
+            if (u.getUserType() == 1) {
 
-        if(ref.usertype == 1){
-            //user is a company
+                Company company = controller.getCompany(userid);
 
-            Company company = controller.getCompany(ref.userid);
+                //transfer company user data through session
+                session.setAttribute("company", company);
 
-            ref.username = company.getUser_name();
-            ref.usertype = company.getUserType();
+                //redirect to home page
+                response.sendRedirect("/SoftwareProject/pages/dynamic/home/index.jsp");
 
-            controller.commitChanges();
+                controller.commitChanges();
+            } else if (u.getUserType() == 0) {
 
-            //transfer company user data through session
-            session.setAttribute("company", company);
+                NormalUser normal = controller.getNormal(userid);
 
-            //redirect to home page
-            response.sendRedirect("/SoftwareProject/pages/dynamic/home/index.jsp");
+                //transfer normal user data through session
+                session.setAttribute("normal", normal);
 
-        }else if(ref.usertype == 0) {
-            //user is normal
-            NormalUser normal = controller.getNormal(ref.userid);
+                //redirect to home page
+                response.sendRedirect("/SoftwareProject/pages/dynamic/home/index.jsp");
 
-            ref.username = normal.getUser_name();
-            ref.usertype = normal.getUserType();
-
-            controller.commitChanges();
-
-            //transfer normal user data through session
-            session.setAttribute("normal", normal);
-
-            //redirect to home page
-            response.sendRedirect("/SoftwareProject/pages/dynamic/home/index.jsp");
-
-        }else {
+                controller.commitChanges();
+            }
+        } else {
             //redirect to login page
             response.sendRedirect("/SoftwareProject/pages/dynamic/userlogging/login.jsp");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

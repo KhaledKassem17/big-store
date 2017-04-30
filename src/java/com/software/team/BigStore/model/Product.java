@@ -2,6 +2,7 @@ package com.software.team.BigStore.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,13 +41,19 @@ public class Product implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date post_date;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = SubCategory.class)
+    @ManyToOne(targetEntity = SubCategory.class)
     @JoinColumn(name = "prouduct_category")
     private SubCategory product_category;
-    
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
+
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Prouduct_like.class, mappedBy = "prouduct")
+    private List<Prouduct_like> likes;
+
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Comment.class, mappedBy = "post_id")
+    private List<Comment> comments;
 
     public int getProduct_id() {
         return product_id;
@@ -138,6 +146,22 @@ public class Product implements Serializable {
     @Override
     public String toString() {
         return "Product{" + "product_id=" + product_id + ", product_name=" + product_name + ", product_image=" + product_image + ", product_details=" + product_details + ", product_price=" + product_price + ", product_rate=" + product_rate + ", expiry_date=" + expiry_date + ", selled=" + selled + ", post_date=" + post_date + ", product_category=" + product_category + ", owner=" + owner + '}';
+    }
+
+    public List<Prouduct_like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Prouduct_like> likes) {
+        this.likes = likes;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
 }

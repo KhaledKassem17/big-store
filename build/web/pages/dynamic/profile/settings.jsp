@@ -26,30 +26,26 @@
 <%@include file="/pages/header.jsp" %>
 <%!
     public int user_id;
+    public int flag = 0;
+
 %>
 
 <%
-    Enumeration<String> en = session.getAttributeNames();
-
-    int flag = 0;
-
     NormalUser normal = null;
     Company company = null;
-
-    while (en.hasMoreElements()) {
-        if (en.nextElement().equals("normal")) {
-            normal = (NormalUser) session.getAttribute("normal");
-            user_id = normal.getUser_id();
-            flag = 0;
-        } else if (en.nextElement().equals("company")) {
-            company = (Company) session.getAttribute("company");
-            user_id = company.getUser_id();
-            flag = 1;
-        } else {
-
-        }
+    if (session.getAttribute("company") != null) {
+        company = (Company) session.getAttribute("company");
+        user_id = company.getUser_id();
+        System.out.println("company_id ==> "+user_id);
+        flag = 1;
+    }else{
+        normal = (NormalUser) session.getAttribute("normal");
+        user_id = normal.getUser_id();
+        System.out.println("normal_id ==> "+user_id);
+        flag = 0;
     }
 %>
+
 <div class="breadcrumbs">
     <div class="container">
         <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
@@ -90,6 +86,8 @@
                     <% if (flag == 0) {
                     %>
                     <div style="width:70%; float: right;" >
+                        <input type="hidden" name="user_id" value="<%=user_id%>"/>
+
                         <div class="controls">
                             <input style="font-size: 15px;height: 30px" type="text" id="username" name="username" placeholder="" class="input-xlarge" value="<%=normal.getUser_name()%>">
                             <p class="help-block">Username can contain any letters or numbers, without spaces</p>
@@ -125,7 +123,8 @@
                 <br/><br/>
 
                 <%
-                } else if (flag == 1) {%>
+                } else if (flag == 1) {
+                %>
                 <div style="width:70%; float: right;" >
                     <div class="controls">
                         <input style="font-size: 15px;height: 30px" type="text" id="username" name="username" placeholder="" class="input-xlarge" value="<%=company.getUser_name()%>">
@@ -195,6 +194,7 @@
             <h3>Products</h3>
             <br/>
             <div class="agile_top_brands_grids" style="overflow:scroll;white-space: nowrap;height:450px;">
+                <%System.out.println(user_id);%>
                 <jsp:include page="/pages/dynamic/jspfragments/productjsp/userproducts.jsp">
                     <jsp:param name="user_id" value="<%=user_id%>" />
                 </jsp:include>

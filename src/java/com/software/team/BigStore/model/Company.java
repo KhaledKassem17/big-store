@@ -37,6 +37,16 @@ public class Company extends User {
         this.address = address;
     }
 
+    public Company(String website, String address, String username, String password, String phone, String email, int type) {
+        this.company_website = website;
+        this.address = address;
+        this.setUser_name(username);
+        this.setUser_password(password);
+        this.setUser_phone(phone);
+        this.setUser_email(email);
+        this.setUserType(type);
+    }
+
     public String getCompany_website() {
         return company_website;
     }

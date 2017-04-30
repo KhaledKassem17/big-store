@@ -6,6 +6,18 @@
 <%@page import="com.software.team.BigStore.Controllers.UserController"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.software.team.BigStore.model.User"%>
+
+<%! User nuser = new User();%>
+<% if (session.getAttribute("normal") != null) {
+        nuser = (User) session.getAttribute("normal");
+        request.setAttribute("user", nuser);
+    } else if (session.getAttribute("company") != null) {
+        nuser = (User) session.getAttribute("company");
+        request.setAttribute("user", nuser);
+    } else {
+        response.sendRedirect("../home/index.jsp");
+    }%>
+
 <%
 
     String keyword = request.getParameter("keyword");
@@ -29,14 +41,21 @@ else {
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
-                <figure>
-                    <div class="snipcart-item block">
-                        <div class="snipcart-thumb">
-                            <a href="#"><img src="http://localhost:8080/SoftwareProject/pages/dynamic/jspfragments/userjsp/retrieveUserImage.jsp?imgId=<%=comp.getUser_id()%>" id='productfragment' class="img-responsive" ></a>
-                            <p><%=comp.getUser_name()%></p>
+                <div class="agile_top_brand_left_grid1">
+                    <figure>
+                        <div class="snipcart-item block">
+                            <div class="snipcart-thumb">
+                                <%if (comp.getUser_id() == nuser.getUser_id()) {%>
+                                    <a href="/SoftwareProject/pages/dynamic/profile/profile.jsp"><img src="../jspfragments/retrive_image.jsp?userId=<%=comp.getUser_id()%>" id='productfragment' class="img-responsive" ></a>
+                                    <p><a href="/SoftwareProject/pages/dynamic/profile/profile.jsp"><%=comp.getUser_name()%></a></p>
+                                <%} else{%>
+                                    <a href="/SoftwareProject/pages/dynamic/profile/profile.jsp?visited_user=<%=comp.getUser_id()%>"><img src="../jspfragments/retrive_image.jsp?userId=<%=comp.getUser_id()%>" id='productfragment' class="img-responsive" ></a>
+                                    <p><a href="/SoftwareProject/pages/dynamic/profile/profile.jsp?visited_user=<%=comp.getUser_id()%>"><%=comp.getUser_name()%></a></p>
+                                <%}%>
+                            </div>
                         </div>
-                    </div>
-                </figure>
+                    </figure>
+                </div>
             </div>
         </div>
     </div>

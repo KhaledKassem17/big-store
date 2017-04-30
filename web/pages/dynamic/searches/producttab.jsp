@@ -29,14 +29,16 @@ else {
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
-                <figure>
-                    <div class="snipcart-item block">
-                        <div class="snipcart-thumb">
-                            <a href="#"><img src="http://localhost:8080/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp?imgId=<%=pro.getProduct_id()%>" id='productfragment' class="img-responsive" ></a>
-                            <p><%=pro.getProduct_name()%></p>
+                <div class="agile_top_brand_left_grid1">
+                    <figure>
+                        <div class="snipcart-item block">
+                            <div class="snipcart-thumb">
+                                <a href="/SoftwareProject/pages/dynamic/products/single.jsp?product_id=<%=pro.getProduct_id()%>"><img src="http://localhost:8080/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp?imgId=<%=pro.getProduct_id()%>" id='productfragment' class="img-responsive" ></a>
+                                <p><%=pro.getProduct_name()%></p>
+                            </div>
                         </div>
-                    </div>
-                </figure>
+                    </figure>
+                </div>
             </div>
         </div>
     </div>
