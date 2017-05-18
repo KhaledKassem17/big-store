@@ -1,4 +1,4 @@
-<%@include file="/pages/header.jsp" %>
+<%--<%@include file="/pages/header.jsp" %>--%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="css/style.css">
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -182,4 +182,4 @@
         </div>
     </div>
 <br/>
-<%@include file="/pages/footer.jsp" %>
+<%--<%@include file="/pages/footer.jsp" %>--%>

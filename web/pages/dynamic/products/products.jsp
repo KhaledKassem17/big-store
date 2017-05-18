@@ -145,7 +145,6 @@
 
                     session.setAttribute("product", product);
 
-                    try {
             %>
             <div class="agile_top_brands_grids" >
                 <div class="col-md-4 top_brand_left">
@@ -163,11 +162,11 @@
                                             <p><%=product.getProduct_name()%></p>
                                             <div class="stars">
                                                 <% for (int i = 0; i < product.getProduct_rate(); i++) {
-                                                        out.print("<i class=\"fa fa-star blue-star\" aria-hidden=\"true\"></i>");
+                                                        %><i class="fa fa-star blue-star" aria-hidden="true" ></i><%
                                                     }
                                                     int nonrated = 5 - product.getProduct_rate();
                                                     for (int i = 0; i < nonrated; i++) {
-                                                        out.print("<i class=\"fa fa-star gray-star\" aria-hidden=\"true\"></i>");
+                                                        %><i class="fa fa-star gray-star" aria-hidden="true"></i><%
                                                     }
                                                 %>
                                             </div>
@@ -207,11 +206,7 @@
                 if (columns == 3) {
             %><div class="clearfix"></div><%
                             columns = 0;
-                        }
-                    } catch (IOException ex) {
-
-                    }
-
+                            }
                 }
             %>
 

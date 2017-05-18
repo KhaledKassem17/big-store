@@ -36,6 +36,14 @@
         <servlet-name>UpdateProduct</servlet-name>
         <servlet-class>com.software.team.BigStore.DBServlets.ProductServlets.UpdateProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QuestionServlet</servlet-name>
+        <servlet-class>com.software.team.BigStore.DBServlets.QuestionServlets.QuestionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AnswerServlet</servlet-name>
+        <servlet-class>com.software.team.BigStore.DBServlets.QuestionServlets.AnswerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>saveUser</servlet-name>
         <url-pattern>/saveUser</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>UpdateProduct</servlet-name>
         <url-pattern>/UpdateProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionServlet</servlet-name>
+        <url-pattern>/QuestionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AnswerServlet</servlet-name>
+        <url-pattern>/AnswerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>1440</session-timeout>

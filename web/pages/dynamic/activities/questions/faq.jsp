@@ -1,3 +1,9 @@
+
+<%@page import="com.software.team.BigStore.Controllers.QuestionController"%>
+<%@page import="com.software.team.BigStore.model.Answer"%>
+<%@page import="com.software.team.BigStore.model.Question"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.software.team.BigStore.model.User"%>
 <%@include file="/pages/header.jsp" %>
 
 <!-- //navigation -->
@@ -14,66 +20,72 @@
 <!-- help-page -->
 	<div class="faq-w3agile">
 		<div class="container">
-            
+
                    <!-- ابدئوااااااااااااااااااامن هنا -------------------------------------------------------------------->
-            
+
 			<h2 class="w3_agile_header">Frequently asked questions(FAQ)</h2> 
-			<ul class="faq">
-				<li class="item1"><a href="#" title="click here">  How will I know when I have a sale?</a>
-					<ul>
-						<li class="subitem1"><p> We will e-mail you after Big Store Payments authorizes the buyer's payment method. You can see orders, obtain shipping information, and confirm shipments in Manage Orders in your Seller Account. Professional sellers can also download Order Reports to view sales.</p></li>										
-					</ul>
-				</li>
-				<li class="item2"><a href="#" title="click here">How can buyers see all of my listings in one place?</a>
-					<ul>
-						<li class="subitem1"><p> Your Seller Profile page displays all of your seller listings and includes a listing search. Customers are directed to your profile when they click your seller name next to your listings.</p></li>										
-					</ul>
-				</li>
-				<li class="item3"><a href="#" title="click here">Can I put my account on hold while I go on vacation?</a>
-					<ul>
-						<li class="subitem1"><p>Yes, you can do just that with the Listings Status feature.</p></li>										
-					</ul>
-				</li>
-				<li class="item4"><a href="#" title="click here">What should I do if I can't find what I want to sell in the Big Store catalog?</a>
-					<ul>
-						<li class="subitem1"><p>If you want to sell an item but it does not currently exist in our retail catalog, you may be able to create a page for it using the Add a Product tool in your seller account. Once a page has been created for the product, you can list your copy of the item on it. Learn more. 
+                        <br/><br/>
+<%! User user = null ;%>
+<% if (session.getAttribute("normal") != null) {
+        user = (User) session.getAttribute("normal");
+        request.setAttribute("user", user);
+    } else if (session.getAttribute("company") != null) {
+        user = (User) session.getAttribute("company");
+        request.setAttribute("user", user);
+    }
+%>
 
-Please note there are restrictions on some products and categories, and we cannot guarantee that an item will be accepted into our catalog. Learn more about Category, Product, and Listing Restrictions.</p></li>										
-					</ul>
-				</li> 
-				<li class="item5"><a href="#" title="click here">How do I decide if a Professional selling plan is right for me?</a>
-					<ul>
-						<li class="subitem1"><p>Our Professional selling plan is optional--you do not need a paid subscription to begin selling on our site. That said, the Professional selling plan has many benefits for frequent or volume sellers. Read more about the Professional selling plan, including details about how to sign up. For instructions on upgrading your current account, see Individual and Professional Selling Plans.</p></li>										
-					</ul>
-				</li>
-							<li class="item6"><a href="#" title="click here">  How will I know when I have a sale?</a>
-					<ul>
-						<li class="subitem1"><p> We will e-mail you after Big Store Payments authorizes the buyer's payment method. You can see orders, obtain shipping information, and confirm shipments in Manage Orders in your Seller Account. Professional sellers can also download Order Reports to view sales.</p></li>										
-					</ul>
-				</li>
-				<li class="item7"><a href="#" title="click here">How can buyers see all of my listings in one place?</a>
-					<ul>
-						<li class="subitem1"><p> Your Seller Profile page displays all of your seller listings and includes a listing search. Customers are directed to your profile when they click your seller name next to your listings.</p></li>										
-					</ul>
-				</li>
-				<li class="item8"><a href="#" title="click here">Can I put my account on hold while I go on vacation?</a>
-					<ul>
-						<li class="subitem1"><p>Yes, you can do just that with the Listings Status feature.</p></li>										
-					</ul>
-				</li>
-				<li class="item9"><a href="#" title="click here">What should I do if I can't find what I want to sell in the Big Store catalog?</a>
-					<ul>
-						<li class="subitem1"><p>If you want to sell an item but it does not currently exist in our retail catalog, you may be able to create a page for it using the Add a Product tool in your seller account. Once a page has been created for the product, you can list your copy of the item on it. Learn more. 
+                        <%if(user != null){%>
+                        <form action="http://localhost:8080/SoftwareProject/QuestionServlet" method="POST">
+                            <textarea style = "width: 100%" name="question" placeholder="Type a Question!" cols="3"></textarea>
+                            <input type="submit" style = "margin: 10px" class ="btn btn-primary" value="Ask Question"/>
+                        </form>
+                        <%}%>
 
-Please note there are restrictions on some products and categories, and we cannot guarantee that an item will be accepted into our catalog. Learn more about Category, Product, and Listing Restrictions.</p></li>										
-					</ul>
-				</li> 
-				<li class="item10"><a href="#" title="click here">How do I decide if a Professional selling plan is right for me?</a>
-					<ul>
-						<li class="subitem1"><p>Our Professional selling plan is optional--you do not need a paid subscription to begin selling on our site. That said, the Professional selling plan has many benefits for frequent or volume sellers. Read more about the Professional selling plan, including details about how to sign up. For instructions on upgrading your current account, see Individual and Professional Selling Plans.</p></li>										
-					</ul>
+                        <%
+                            ArrayList<Question> questions ;
+                            ArrayList<Answer> answers ;
+
+                            QuestionController qc = new QuestionController();
+
+                            questions = qc.getAllQuestions();
+
+                            for(Question q : questions){
+                                answers = qc.getAllAnswersForThatQuestion(q.getQuestionId());
+%>
+
+                        <ul class="faq">
+				<li class="item<%=q.getQuestionId()%>">
+                                    <% if(user.getUser_id() == q.getOwner().getUser_id()){ %>
+                                        <a href="/SoftwareProject/pages/dynamic/profile/profile.jsp"><img height="30" width="30" src="/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp?userId=<%=q.getOwner().getUser_id()%>"  alt="<%=q.getOwner().getUser_name()%> photo"/><p style="color:#4286f4"><%=q.getOwner().getUser_name()%></p></a>
+                                    <%} else {%>
+                                        <a href="/SoftwareProject/pages/dynamic/profile/profile.jsp?visited_user=<%=q.getOwner().getUser_id()%>"><img height="30" width="30" src="/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp?userId=<%=q.getOwner().getUser_id()%>"  alt="<%=q.getOwner().getUser_name()%> photo"/><p style="color:#4286f4"><%=q.getOwner().getUser_name()%></p> </a>
+                                    <%}%>
+                                        <a href="#" title="click here" style="color:#646a72"><p style="font-size: medium"><%=q.getQuestion_content()%></p><p><%=q.getQuestion_date()%></p></a>
+                                    <ul>
+                                        <% for(Answer a : answers){ %>
+                                        <li class="subitem<%=a.getAnswer_id()%>">
+                                        <% if(user.getUser_id() == a.getAnswerer().getUser_id()){ %>
+                                            <a href="/SoftwareProject/pages/dynamic/profile/profile.jsp"><img height="30" width="30" src="/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp?userId=<%=a.getAnswerer().getUser_id()%>"  alt="<%=a.getAnswerer().getUser_name()%> photo"/><p style="color:#4286f4"><%=a.getAnswerer().getUser_name()%></p> </a>
+                                        <%} else {%>
+                                            <a href="/SoftwareProject/pages/dynamic/profile/profile.jsp?visited_user=<%=a.getAnswerer().getUser_id()%>"><img height="30" width="30" src="/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp?userId=<%=a.getAnswerer().getUser_id()%>"  alt="<%=a.getAnswerer().getUser_name()%> photo"/><p style="color:#4286f4"><%=a.getAnswerer().getUser_name()%></p></a>
+                                        <%}%>
+                                            <a style="color:#646a72"><p style="font-size: small"><%=a.getAnswer_content()%></p><br/><%=a.getDate()%></a>
+                                        </li>
+                                        <%}%>
+                                        <%if(user != null){%>
+                                        <li>
+                                            <form action="http://localhost:8080/SoftwareProject/AnswerServlet" method="POST">
+                                                <input style="width: 100%" type="text" name="answer" placeholder="Type your answer" />
+                                                <input type="hidden" name="question_id" value="<%=q.getQuestionId()%>"/>
+                                                <input type="submit" hidden=""/>
+                                            </form>
+                                        </li>
+                                        <%}%>
+                                    </ul>
 				</li>
-			</ul> 
+                                <%}%>
+			</ul>
             <!-- الى هنا ---------------------------------------------------------------------------------.
 			<!-- script for tabs -->
 			<script type="text/javascript">

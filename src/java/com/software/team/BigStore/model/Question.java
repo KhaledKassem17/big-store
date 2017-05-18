@@ -9,6 +9,8 @@ package com.software.team.BigStore.model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -21,8 +23,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Question implements Serializable {
-    
+
     @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     int questionId;
     
     @OneToOne
@@ -77,12 +80,10 @@ public class Question implements Serializable {
     public void setRate(int rate) {
         this.rate = rate;
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Question{" + "questionId=" + questionId + ", owner=" + owner + ", question_content=" + question_content + ", question_date=" + question_date + ", right_answer=" + right_answer + ", rate=" + rate + '}';
+    }
+
 }

@@ -32,7 +32,7 @@ public class CheckLoggedUser {
 
             try {
                 out.print("<li><a href=\"/SoftwareProject/pages/dynamic/activities/chat/chat.jsp\" style=\"color:#c7e4ed\"> Messages </a></li>");
-                out.print("<li><a href=\"/SoftwareProject/pages/dynamic/profile/profile.jsp\"><img height=\"30\" width=\"30\" src=\"../jspfragments/retrive_image.jsp?userId="+normal.getUser_id()+"\"  alt=\""+normal.getUser_name()+" photo\"/></a> <a href=\"/SoftwareProject/pages/dynamic/profile/profile.jsp\" style=\"color:#c7e4ed\"> " + normal.getUser_name() + " </a></li>");
+                out.print("<li><a href=\"/SoftwareProject/pages/dynamic/profile/profile.jsp\"><img height=\"30\" width=\"30\" src=\"/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp?userId="+normal.getUser_id()+"\"  alt=\""+normal.getUser_name()+" photo\"/></a> <a href=\"/SoftwareProject/pages/dynamic/profile/profile.jsp\" style=\"color:#c7e4ed\"> " + normal.getUser_name() + " </a></li>");
                 out.println("<li class=\"dropdown menu__item menu__dropDown\" >"
                         + "    <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\">"
                         + "        <i class=\"fa fa-cog fa-spin\"></i>"
@@ -63,7 +63,7 @@ public class CheckLoggedUser {
 
             try {
                 out.print("<li><a href=\"/SoftwareProject/pages/dynamic/activities/chat/chat.jsp\" style=\"color:#5aed72\"> Messages </a></li>");
-                out.print("<li><a href=\"/SoftwareProject/pages/dynamic/profile/profile.jsp\"><img height=\"30\" width=\"30\" src=\"../jspfragments/retrive_image.jsp?userId="+company.getUser_id()+"\"  alt=\""+company.getUser_name()+" photo\"/></a> <a href=\"/SoftwareProject/pages/dynamic/profile/profile.jsp\" style=\"color:#5aed72\"> " + company.getUser_name() + " </a></li>");
+                out.print("<li><a href=\"/SoftwareProject/pages/dynamic/profile/profile.jsp\"><img height=\"30\" width=\"30\" src=\"/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp?userId="+company.getUser_id()+"\"  alt=\""+company.getUser_name()+" photo\"/></a> <a href=\"/SoftwareProject/pages/dynamic/profile/profile.jsp\" style=\"color:#5aed72\"> " + company.getUser_name() + " </a></li>");
                 out.println("<li class=\"dropdown menu__item menu__dropDown\" >"
                         + "    <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\">"
                         + "        <i class=\"fa fa-cog fa-spin\"></i>"

@@ -108,6 +108,12 @@
                                         <% }%>
                                     </h4>
                                 </li>
+                                <li>
+                                    <% if (userId != 0) { %>
+                                    
+                                        <button class="col-md-push-8 col-md-3 col-xs-6 btn btn-primary"><a href="#">Message</a></button>
+                                    <%}%>
+                                </li>
                             </ul>
                             <br/>
                         </div><!--col-md-8 col-sm-8 col-xs-12 close-->
@@ -130,9 +136,7 @@
 
                                 %>
                             </button>
-
                             <% }%>
-
 
                         </div>
 
