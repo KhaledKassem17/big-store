@@ -79,8 +79,7 @@
                     <label class="col-md-4 control-label" for="product-name">product name</label>  
                     <div class="col-md-6">
                         <input id="name" name="product-name" type="text" placeholder="product name" class="form-control input-md" required="true"
-                               value="
-                               <%
+                               value="<%
                                    if (prdct_id != 0) {
                                        out.print(prd.getProduct_name());
                                    }

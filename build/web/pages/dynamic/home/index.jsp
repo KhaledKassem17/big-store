@@ -34,7 +34,7 @@
         <div class="grid_3 grid_5">
             <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs" role="tablist">
-                    <li><a href="#expeditions1">Recommended Products</a></li>
+                    <li style="width: 100%" ><a href="#expeditions1">Recommended Products</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="expeditions1" aria-labelledby="expeditions-tab">
@@ -50,7 +50,7 @@
         <div class="grid_3 grid_5">
             <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs" role="tablist">
-                    <li><a href="#expeditions2">Latest Offers</a></li>
+                    <li style="width: 100%" ><a href="#expeditions2">Latest Offers</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="expeditions2" aria-labelledby="expeditions-tab">
@@ -66,7 +66,7 @@
         <div class="grid_3 grid_5">
             <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs" role="tablist">
-                    <li><a href="#expeditions3">Interests</a></li>
+                    <li style="width: 100%" ><a href="#expeditions3">Interests</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="expeditions3" aria-labelledby="expeditions-tab">

@@ -37,7 +37,7 @@
 
                         <%if(user != null){%>
                         <form action="http://localhost:8080/SoftwareProject/QuestionServlet" method="POST">
-                            <textarea style = "width: 100%" name="question" placeholder="Type a Question!" cols="3"></textarea>
+                            <textarea class="form-control input-md" style = "width: 100%" name="question" placeholder="Type a Question!" cols="3"></textarea>
                             <input type="submit" style = "margin: 10px" class ="btn btn-primary" value="Ask Question"/>
                         </form>
                         <%}%>
@@ -71,12 +71,13 @@
                                             <a href="/SoftwareProject/pages/dynamic/profile/profile.jsp?visited_user=<%=a.getAnswerer().getUser_id()%>"><img height="30" width="30" src="/SoftwareProject/pages/dynamic/jspfragments/retrive_image.jsp?userId=<%=a.getAnswerer().getUser_id()%>"  alt="<%=a.getAnswerer().getUser_name()%> photo"/><p style="color:#4286f4"><%=a.getAnswerer().getUser_name()%></p></a>
                                         <%}%>
                                             <a style="color:#646a72"><p style="font-size: small"><%=a.getAnswer_content()%></p><br/><%=a.getDate()%></a>
+                                        <hr>
                                         </li>
                                         <%}%>
                                         <%if(user != null){%>
                                         <li>
                                             <form action="http://localhost:8080/SoftwareProject/AnswerServlet" method="POST">
-                                                <input style="width: 100%" type="text" name="answer" placeholder="Type your answer" />
+                                                <input class="form-control input-md" style="width: 100%" type="text" name="answer" placeholder="Type your answer" />
                                                 <input type="hidden" name="question_id" value="<%=q.getQuestionId()%>"/>
                                                 <input type="submit" hidden=""/>
                                             </form>

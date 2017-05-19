@@ -106,7 +106,7 @@
         <br/>
         <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
             <ul id="myTab" class="nav nav-tabs" role="tablist">
-                <li><a style="float: left;width:50%;" href="profile.jsp">My Products</a>
+                <li style="width: 100%"><a style="float: left;width:50%;" href="profile.jsp">My Products</a>
                     <a style="float: right;width:50%;" href="?do=followers">
                         <%if (userId == 0) {%>
                             <%if (user.getUserType() == 0) {

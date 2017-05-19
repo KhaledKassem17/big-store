@@ -23,6 +23,7 @@ import javax.servlet.http.Part;
  *
  * @author tito
  */
+@MultipartConfig
 public class UpdateProduct extends HttpServlet {
 
     public static byte[] readFully(InputStream input) throws IOException {
@@ -47,6 +48,22 @@ public class UpdateProduct extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
+        System.out.println("product-name ==> "+request.getParameter("product-name"));
+        System.out.println("product-desc ==> "+request.getParameter("product-desc"));
+        System.out.println("product-price ==> "+request.getParameter("product-price"));
+        System.out.println("product-category ==> "+request.getParameter("category"));
+        System.out.println("product-userId ==> "+request.getParameter("userIdHidden"));
+        System.out.println("product-date ==> "+request.getParameter("expire-date"));
+
+        // obtains the upload file part in this multipart request
+        Part filePart = request.getPart("imgbutton");
+
+        if(filePart == null){
+            System.out.println("image not recieved!");
+        }else{
+            System.out.println("image recieved!");
+        }
 
         String name = request.getParameter("product-name");
         String details = request.getParameter("product-desc");
@@ -96,8 +113,6 @@ public class UpdateProduct extends HttpServlet {
         // insert photo to databse
         InputStream inputStream = null; // input stream of the upload file
 
-        // obtains the upload file part in this multipart request
-        Part filePart = request.getPart("imgbutton");
         if (filePart != null) {
             // prints out some information for debugging
             System.out.println(filePart.getName());

@@ -116,7 +116,7 @@
                                     <div class="productprice" >
                                         <div class="pull-right">
                                             <form method="post" action="http://localhost:8080/SoftwareProject/pages/dynamic/profile/profile.jsp">
-                                                <input name="do" type="hidden" value="add" />
+                                                <input name="do" type="hidden" value="edit" />
 
                                                 <input name="edit" type="hidden" value=" <%=pr.getProduct_id()%>" />
                                                 <button type="submit" class="btn btn-success btm-sm" >

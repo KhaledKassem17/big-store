@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,7 @@ import javax.servlet.http.Part;
  * @author Saad
  */
 
+@MultipartConfig
 public class SaveProduct extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -38,12 +40,21 @@ public class SaveProduct extends HttpServlet {
         ProductController prc = new ProductController();
         UserController usc = new UserController();
 
-        System.out.println(request.getParameter("product-name"));
-        System.out.println(request.getParameter("product-desc"));
-        System.out.println(request.getParameter("product-price"));
-        System.out.println(request.getParameter("category"));
-        System.out.println(request.getParameter("userIdHidden"));
-        System.out.println(request.getParameter("expire-date"));
+        System.out.println("product-name ==> "+request.getParameter("product-name"));
+        System.out.println("product-desc ==> "+request.getParameter("product-desc"));
+        System.out.println("product-price ==> "+request.getParameter("product-price"));
+        System.out.println("product-category ==> "+request.getParameter("category"));
+        System.out.println("product-userId ==> "+request.getParameter("userIdHidden"));
+        System.out.println("product-date ==> "+request.getParameter("expire-date"));
+
+        // obtains the upload file part in this multipart request
+        Part filePart = request.getPart("imgbutton");
+
+        if(filePart == null){
+            System.out.println("image not recieved!");
+        }else{
+            System.out.println("image recieved!");
+        }
 
         String name = request.getParameter("product-name");
         String details = request.getParameter("product-desc");
@@ -61,7 +72,7 @@ public class SaveProduct extends HttpServlet {
         pr.setPost_date(new Date());
 
         try {
-            date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(expiry_date);
+            date = new SimpleDateFormat("yyyy-MM-dd").parse(expiry_date);
             pr.setExpiry_date(date);
 
         } catch (ParseException ex) {
@@ -79,8 +90,6 @@ public class SaveProduct extends HttpServlet {
         // insert photo to databse
         InputStream inputStream = null; // input stream of the upload file
 
-        // obtains the upload file part in this multipart request
-        Part filePart = request.getPart("imgbutton");
         if (filePart != null) {
             // prints out some information for debugging
             System.out.println(filePart.getName());
@@ -89,6 +98,8 @@ public class SaveProduct extends HttpServlet {
 
             // obtains input stream of the upload file
             inputStream = filePart.getInputStream();
+        }else{
+            System.out.println("image recieved as null!");
         }
 
         byte[] bytes = readFully(inputStream);
